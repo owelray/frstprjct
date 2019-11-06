@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>hello</p>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label> Name <br>
+                <input type="text" name="name" value="{{ person.name }}" />
+            </label>
+        </p>
+        <p>
+            <label> Age <br>
+                <input type="number" name="age" value="{{ person.age }}" />
+            </label>
+        </p>
+         <input type="submit" value="Save">
+    </form>
+
+    <h2>Users</h2>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+        </thead>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td><a href="edit/{{ person.id }}">Edit</a> or <a href="delete/{{ person.id }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
