@@ -19,7 +19,13 @@ from mainapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
-    path('first_project/', views.info, name="first_project"),
-    path('create/', views.create),
+    path('', views.index, name='home')
+]
+from first_project import views
+
+urlpatterns = [
+    path('first_project/', views.info,),
+    path('first_project/create/', views.create),
+    path('first_project/edit/<int:id>/', views.edit),
+    path('first_project/delete/<int:id>/', views.delete),
 ]
