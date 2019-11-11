@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "/css/first_project.css" %}">
+    <title>Document</title>
+</head>
+
+<body class="container">
+    <div class="upper height">
+        <div class="navigation-links"></div>
+        <div class="description">
+            <p>Here is my first project that is able to save, <br>
+                edit and delete requests in the database and <br>
+                display them on this page. </p>
+        </div>
+    </div>
+    <div class="project-container ">
+        <div class="main-form">
+            <form method="POST" action="create/">
+                {% csrf_token %}
+                <div class="name-input form-group">
+                    <p>
+                        <label> Name <br>
+                            <input type="text" name="name" value="{{ person.name }}" autocomplete="off"
+                                placeholder="Enter your name" />
+                        </label>
+                    </p>
+                </div>
+                <div class="age-input">
+                    <p>
+                        <label> Age <br>
+                            <input type="number" name="age" value="{{ person.age }}" autocomplete="off"
+                                placeholder="Enter your age" />
+                        </label>
+                    </p>
+                </div>
+                <div class="save-button">
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+        <div class="userslist"> {% if people.count > 0 %} <h2>Users</h2>
+            <table>
+                <thead>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>You can: </th>
+                </thead>
+                {% for person in people %}
+                <tr>
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.age }}</td>
+                    <td><a href="edit/{{ person.id }}">Edit</a> or
+                        <a href="delete/{{ person.id }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </div>
+    <div class="links height">
+        <p>links</p>
+    </div>
+</body>
+
+</html>
