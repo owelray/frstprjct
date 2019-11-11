@@ -1,25 +1,42 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static "/css/first_project_edit.css" %}">
     <title>Edit</title>
 </head>
 
-<body>
-  <form method="POST">
-        {% csrf_token %}
-        <p>
-            <label>Введите имя</label><br>
-            <input type="text" name="name" value="{{person.name}}" />
-        </p>
-        <p>
-            <label>Введите возраст</label><br>
-            <input type="number" name="age" value="{{person.age}}" />
-        </p>
-        <input type="submit" value="Save" >
-    </form>
+<body class="container">
+    <div class="upper">
+        <h1>What you want to change ? </h1>
+    </div>
+    <div class="edit-form">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="name-input">
+                <p>
+                    <label> Name <br>
+                        <input type="text" name="name" value="{{ person.name }}" autocomplete="off"
+                            placeholder="Enter your name" />
+                    </label>
+                </p>
+            </div>
+            <div class="age-input">
+                <p>
+                    <label> Age <br>
+                        <input type="number" name="age" value="{{ person.age }}" autocomplete="off"
+                            placeholder="Enter your age" />
+                    </label>
+                </p>
+            </div>
+            <div class="save-button">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
