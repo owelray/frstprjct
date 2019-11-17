@@ -19,15 +19,27 @@
         <div class="tittle">
           <h1>Library</h1>
         </div>
-        <div class="register btn">
-          <a href="register"><h2>SignUp</h2></a>
-        </div>
-        <div class="login btn">
-          <a href="login"><h2>SignIn</h2></a>
+        <div class="authorization">
+          {% if user.is_authenticated %}
+          <div class="logout btn">
+            <a href="logout?next={{ request.path }}"><h2>LogOut</h2></a>
+          </div>
+          {% else %}
+          <div class="register btn">
+            <a href="register?next={{ request.path }}"><h2>SignUp</h2></a>
+          </div>
+          <div class="login btn">
+            <a href="login?next={{ request.path }}"><h2>SignIn</h2></a>
+          </div>
+          {% endif %}
         </div>
       </div>
       <div class="description">
-        <p>description</p>
+        <p>
+          This is the second project that has a system of users <br />
+          who can create a review for any book.<br />
+          The user can also rate reviews of other users.
+        </p>
       </div>
       <div class="main">
         <p>main</p>
