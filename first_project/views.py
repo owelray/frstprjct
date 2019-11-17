@@ -15,6 +15,7 @@ def create(request):
         person.save()
     return HttpResponseRedirect("/first_project")
 
+
 def edit(request, id):
     try:
         person = Person.objects.get(id=id)
