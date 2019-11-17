@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+    <p>hello</p>
+    <form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign In</button>
+    </form>
+</body>
+
+</html>

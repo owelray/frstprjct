@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import  include
+from django.contrib.auth import forms
 
-
+forms.AuthenticationForm.error_messages={'invalid_login': ('Username or password is incorrect. Please, try again'),}
 
 urlpatterns = [
     path('admin/', admin.site.urls),

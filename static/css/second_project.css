@@ -1,0 +1,125 @@
+@font-face {
+  font-family: "Gravity-Regular";
+  src: url("../fonts/Gravity-Regular.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gravity-Light";
+  src: url("../fonts/Gravity-Light.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gravity-UltraLight";
+  src: url("../fonts/Gravity-UltraLight.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: radial-gradient(
+    circle,
+    #37b1da,
+    #2d8fba,
+    #256e99,
+    #1d5078,
+    #133357
+  );
+}
+p {
+  color: white;
+  margin: 0;
+  font-family: Gravity-Regular;
+  font-size: 22px;
+}
+.btn p:hover {
+  background-color: white;
+  border: 1px white solid;
+  border-radius: 20px;
+  transition: 0.3s ease-in;
+  color: black;
+  padding: 0.2em;
+}
+
+h1 {
+  font-family: Gravity-Light;
+  font-size: 45px;
+  color: white;
+}
+h2 {
+  font-family: Gravity-UltraLight;
+  /*font-size: 30px;
+  color: white;*/
+}
+.btn h2:hover {
+  background-color: white;
+  border: 1px white solid;
+  border-radius: 20px;
+  transition: 0.3s ease-in;
+  color: black;
+  padding: 0.2em;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
+}
+.homebutton {
+  flex-grow: 1;
+}
+.returnbutton {
+  flex-grow: 1;
+  text-align: center;
+}
+.tittle {
+  flex-grow: 5;
+  text-align: center;
+}
+.register {
+  flex-grow: 2;
+  text-align: center;
+}
+.login {
+  flex-grow: 2;
+  text-align: center;
+}
+
+.description {
+  flex-grow: 3;
+}
+.main {
+  flex-grow: 9;
+}
+.footer {
+  flex-grow: 1;
+}
