@@ -32,7 +32,7 @@ html {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; 
 }
 
 body {
@@ -49,7 +49,10 @@ p {
   color: white;
   margin: 0;
   font-family: Gravity-Regular;
-  font-size: 22px;
+  font-size: 26px;
+}
+.btn {
+  display: block;
 }
 .btn p:hover {
   background-color: white;
@@ -67,16 +70,16 @@ h1 {
 }
 h2 {
   font-family: Gravity-UltraLight;
-  /*font-size: 30px;
-  color: white;*/
+  font-size: 30px;
+  color: white;
 }
 .btn h2:hover {
   background-color: white;
   border: 1px white solid;
-  border-radius: 20px;
-  transition: 0.3s ease-in;
+  border-radius: 20px; 
+  transition: 0.3s ease-in; 
   color: black;
-  padding: 0.2em;
+  padding: 0.2em; 
 }
 a {
   text-decoration: none;
@@ -94,36 +97,73 @@ a {
   height: 60px;
   align-items: center;
 }
-.homebutton {
-  flex-grow: 1;
-}
-.returnbutton {
-  flex-grow: 1;
-  text-align: center;
-}
-.tittle {
-  flex-grow: 5;
-  text-align: center;
-}
-.authorization {
+ul {
   display: flex;
-  flex-grow: 3;
+  list-style-type: none;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+li {
+  list-style-type: none;
+}
+
+.homebutton {
+  /* flex-grow: 1; */
+}
+.homebutton a {
+  background-image: url(/static/images/home_icon.png);
+  height: 54px;
+  width: 54px;
+  display: block;
+}
+.homebutton a:hover {
+  background-image: url(/static/images/home_icon_hover.png);
+  background-color: white;
+  border-radius: 40px;
+  transition: 0.3s ease-in;
+  color: black;
+  padding: 0.2em;
+}
+.returnbutton { 
   text-align: center;
-  justify-content: center;
+  /* flex-grow: 1; */
+  padding-left: 20px;
+}
+.title {
+  flex-grow: 3; 
+  text-align: center;
+}
+.title h1 {
+  font-size: 54px;
 }
 
 .register {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   text-align: center;
+  padding-right: 20px;
 }
 .login {
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  text-align: center;
+  padding-right: 80px;
+}
+.add-book {
+  /* flex-grow: 1; */
+  text-align: center;
+  padding-right: 20px;
+}
+.logout {
+  /* flex-grow: 1;  */
+  text-align: center;
+  padding-right: 80px;
+}
+.description {
+  /* flex-grow: 3; */
   text-align: center;
 }
-
-.description {
-  /*flex-grow: 3;*/
-  text-align: center;
+.description p {
+  font-size: 34px;
 }
 .main {
   flex-grow: 9;
@@ -131,3 +171,111 @@ a {
 .footer {
   flex-grow: 1;
 }
+
+/* add.html */
+form {
+  width: 100%;
+}
+.review-form {
+  display: flex;
+  /* justify-content: space-between;  */
+  height: 100%;
+}
+.inputs {
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+.review-form label {
+  display: block;
+  color: white;
+  font-family: Gravity-Light;
+  font-size: 34px;
+  text-align: center;
+}
+.review-form input::placeholder {
+  color: #133357;
+}
+.review-form input[type=text] {
+    background-color: #01bcc6;
+    height: 50px;
+    /* width: auto; */
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: #efefee;
+    font-family: Gravity-Regular;
+    border-radius: 23px;
+    text-align: center;
+    outline: 0;
+}
+.review-form textarea {
+  background-color: #01bcc6;
+  height: 100%;
+  /* width: auto; */
+  border: none;
+  font-size: 22px;
+  font-weight: 400;
+  color: #efefee;
+  font-family: Gravity-Regular;
+  border-radius: 15px;
+  text-align: center;
+  outline: 0;
+  resize: none;
+}
+.title-input input{
+  width: 560px;
+}
+.author-input input{
+  width: 390px;
+}
+.review-input textarea {
+  width: 500px;
+  height: 310px;
+}
+.review-input textarea::placeholder {
+  color: #133357;
+}
+.publish-button {
+  justify-content: center;
+  display: flex;
+}
+input[type='submit'] {
+  height: 100%;
+  width: 25%;
+  font-family: Gravity-Light;
+  font-weight: 700;
+  font-size: 24px;
+  color: black;
+  line-height: 40px;
+  text-align: center;
+  background-color: #09cac7;
+  border: 1px #87314e solid;
+  /* opacity: 1; */
+  cursor: pointer;
+  margin-top: 50px;
+  /* padding: 0px 20px; */
+  border-radius: 20px;
+  outline: 0;
+}
+
+input[type=submit]:hover {
+background-color: rgb(141, 235, 238);
+  border: 1px black solid;
+  transition: 0.1s linear;
+}
+
+/* end add.html */
+
+
+
+
+
+
+
+
+
+
+
+
+

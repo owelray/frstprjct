@@ -1,0 +1,66 @@
+{% extends "second_project/wrapper.html" %}
+{% load static %}
+{% block navbar %}
+<div class="header">
+  <ul>
+    <li class="homebutton">
+      <a href="/second_project"></a>
+    </li>
+    <li class="returnbutton btn">
+      <a href="">
+        <p>Return to portfolio</p>
+      </a>
+    </li>
+    <li class="title">
+      <!-- <h1>Library</h1> -->
+    </li>
+    {% if user.is_authenticated %}
+    <li class="logout btn">
+      <a href="logout?next=/second_project/">
+        <h2>LogOut</h2>
+      </a>
+    </li>
+    {% else %}
+    <li class="register btn">
+      <a href="register?next={{ request.path }}">
+        <h2>SignUp</h2>
+    </li>
+    <li class="login btn">
+      <a href="login?next={{ request.path }}">
+        <h2>SignIn</h2>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock navbar %}
+{% block content %}
+<div class="review-form">
+  <form method="POST" action="create/">
+    {% csrf_token %}
+    <div class="inputs">
+      <div class="title-input">
+        <label> Title of the book <br>
+          <input type="text" name="title" value="{{ book.title }}" autocomplete="off"
+            placeholder="Enter the title of the book (60 symbols max)" required maxlength="60" contenteditable="true">
+        </label>
+      </div>
+      <div class="author-input">
+        <label> Author of the book <br>
+          <input type="text" name="author" value="{{ book.author }}" autocomplete="off"
+            placeholder="Enter author of the book (35 symbols)" required maxlength="35">
+        </label>
+      </div>
+      <div class="review-input">
+        <label> Review <br>
+          <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"
+            placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>
+        </label>
+      </div>
+    </div>
+    <div class="publish-button">
+      <input type="submit" value="Publish">
+    </div>
+  </form>
+</div>
+{% endblock content %}

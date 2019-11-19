@@ -22,20 +22,16 @@
             <form method="POST" action="create/">
                 {% csrf_token %}
                 <div class="name-input form-group">
-                    <p>
                         <label> Name <br>
                             <input type="text" name="name" value="{{ person.name }}" autocomplete="off"
                                 placeholder="Enter your name" />
                         </label>
-                    </p>
                 </div>
                 <div class="age-input">
-                    <p>
                         <label> Age <br>
                             <input type="number" name="age" value="{{ person.age }}" autocomplete="off"
                                 placeholder="Enter your age" />
                         </label>
-                    </p>
                 </div>
                 <div class="save-button">
                     <input type="submit" value="Save">

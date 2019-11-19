@@ -8,15 +8,17 @@ from django.views.generic.base import View
 from django.contrib.auth import logout
 from django.template.context_processors import request
 from django.http.request import HttpRequest
+from .models import Book
 # from django import forms
 
-def main (request):
-    return render(request, 'library.html')
+def main(request):
+    books = Book.objects.all()
+    return render(request, "second_project/library.html", {"books": books})
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
     success_url = "/second_project"
-    template_name = "register.html"
+    template_name = "second_project/register.html"
 
     def form_valid(self, form):
         form.save()
@@ -24,7 +26,7 @@ class RegisterFormView(FormView):
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm
-    template_name = "login.html"
+    template_name = "second_project/login.html"
     success_url = "/second_project"
 
     def form_valid(self, form):
@@ -38,4 +40,15 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(redirect_to)
 
+def create(request):
+    if request.method == "POST":
+        book = Book()
+        book.title = request.POST.get("title")
+        book.author = request.POST.get("author")
+        book.review = request.POST.get("review")
+        book.save()
+    return HttpResponseRedirect("/second_project")
 
+def add(request):
+    books = Book.objects.all()
+    return render(request, "second_project/add.html", {"books": books})

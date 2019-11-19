@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<link rel="stylesheet" href="{% static "/css/second_project.css" %}">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    {% block navbar %}
+    <div class="header">
+      <ul>
+        <li class="homebutton">
+          <a href="/second_project"></a>
+        </li>
+        <li class="returnbutton btn">
+          <a href="">
+            <p>Return to portfolio</p>
+          </a>
+        </li>
+        <li class="title">
+          <h1>Library</h1>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="add-book btn">
+          <a href="add">
+            <h2>Make a review</h2>
+          </a>
+        </li>
+        <li class="logout btn">
+          <a href="logout?next=/second_project/">
+            <h2>LogOut</h2>
+          </a>
+        </li>
+        {% else %}
+        <li class="register btn">
+          <a href="register?next={{ request.path }}">
+            <h2>SignUp</h2>
+        </li>
+        <li class="login btn">
+          <a href="login?next={{ request.path }}">
+            <h2>SignIn</h2>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endblock navbar %}
+    {% block description %}
+    {% endblock description %}
+    {% block content %}
+    {% endblock content %}
+    {% block footer %}
+    {% endblock footer %}
+  </div>
+</body>
+
+</html>
