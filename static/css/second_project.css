@@ -27,15 +27,13 @@ body,
 html {
   padding: 0;
   margin: 0;
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: auto;
 }
 
 html {
   scroll-behavior: smooth; 
-}
-
-body {
   background-image: radial-gradient(
     circle,
     #37b1da,
@@ -44,6 +42,11 @@ body {
     #1d5078,
     #133357
   );
+}
+
+body {
+   height: 100vh;
+   
 }
 p {
   color: white;
@@ -63,6 +66,13 @@ p {
   padding: 0.2em;
 }
 
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 h1 {
   font-family: Gravity-Light;
   font-size: 45px;
@@ -72,6 +82,13 @@ h2 {
   font-family: Gravity-UltraLight;
   font-size: 30px;
   color: white;
+}
+.main {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .btn h2:hover {
   background-color: white;
@@ -89,14 +106,22 @@ a {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */
+  flex-grow: 1;
+  /* align-items: center; */
 }
 .header {
   display: flex;
   justify-content: space-between;
   height: 60px;
   align-items: center;
+  flex-grow: 0;
 }
+  .footer {
+    flex-grow: 0;
+
+}
+
 ul {
   display: flex;
   list-style-type: none;
@@ -166,11 +191,17 @@ li {
   font-size: 34px;
 }
 .main {
-  flex-grow: 9;
-}
-.footer {
   flex-grow: 1;
+  justify-content: center;
+
 }
+.review-list {
+  width: 84%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 /* add.html */
 form {
@@ -180,11 +211,12 @@ form {
   display: flex;
   /* justify-content: space-between;  */
   height: 100%;
+  align-items: center;
 }
 .inputs {
   justify-content: space-around;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .review-form label {
   display: block;
@@ -236,6 +268,10 @@ form {
 .review-input textarea::placeholder {
   color: #133357;
 }
+.review-input {
+  display: flex;
+  justify-content: center;
+}
 .publish-button {
   justify-content: center;
   display: flex;
@@ -266,6 +302,55 @@ background-color: rgb(141, 235, 238);
 }
 
 /* end add.html */
+.review {
+  /* background: url(../images/h-book-colors.png) no-repeat center top / cover; */
+  background-color: #006e85;
+  height: 490px;
+  width: 380px;
+  margin: 15px;
+  text-align: center;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
+}
+.review h1 {
+  font-family: Gravity-Regular;
+  font-size: 33px;
+  color: white; /*#748ed9*/ /*#006e85 */
+  font-style: normal;
+}
+.review h2 {
+  font-size: 25px;
+  font-family: Gravity-Light;
+}
+.review p {
+  font-family: Gravity-Ultralight;
+  font-size: 22;
+}
+.book-title {
+  word-wrap: break-word;
+}
+.book-author {
+  word-wrap: break-word;
+}
+.review-content {
+  width: 100%;
+  /* height: 50%; */
+  /* white-space: pre-wrap; */
+  word-wrap: break-word;
+}
+.review-content p {
+  height: 100%;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.reviewer  {
+  text-align: right;
+}
+
 
 
 

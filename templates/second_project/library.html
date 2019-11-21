@@ -10,7 +10,24 @@
 {% endblock description %}
 {% block content %}
 <div class="main">
-  <h1>test</h1>
+  <div class="review-list">
+    {% for book in books  %}
+    <div class="review">
+      <div class="book-title">
+        <h1>{{ book.title }}</h1>
+      </div>
+      <div class="book-author">
+        <h2>{{ book.author }}</h2>
+      </div>
+      <div class="review-content">
+        <p>{{ book.review  }}</p>
+      </div>
+      <div class="reviewer">
+        <h2>{{ book.reviewer }}</h2>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}
 {% block footer %}

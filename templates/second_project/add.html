@@ -7,7 +7,7 @@
       <a href="/second_project"></a>
     </li>
     <li class="returnbutton btn">
-      <a href="">
+      <a href="/">
         <p>Return to portfolio</p>
       </a>
     </li>
@@ -51,12 +51,12 @@
             placeholder="Enter author of the book (35 symbols)" required maxlength="35">
         </label>
       </div>
-      <div class="review-input">
-        <label> Review <br>
-          <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"
-            placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>
-        </label>
-      </div>
+    </div>
+    <div class="review-input">
+      <label> Review <br>
+        <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"
+          placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>
+      </label>
     </div>
     <div class="publish-button">
       <input type="submit" value="Publish">

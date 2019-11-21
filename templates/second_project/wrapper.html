@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrapper">
     {% block navbar %}
     <div class="header">
       <ul>
@@ -17,7 +17,7 @@
           <a href="/second_project"></a>
         </li>
         <li class="returnbutton btn">
-          <a href="">
+          <a href="/">
             <p>Return to portfolio</p>
           </a>
         </li>
@@ -49,10 +49,12 @@
       </ul>
     </div>
     {% endblock navbar %}
-    {% block description %}
-    {% endblock description %}
-    {% block content %}
-    {% endblock content %}
+    <div class="container">
+      {% block description %}
+      {% endblock description %}
+      {% block content %}
+      {% endblock content %}
+    </div>
     {% block footer %}
     {% endblock footer %}
   </div>
