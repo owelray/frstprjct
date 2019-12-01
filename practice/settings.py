@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
       #  'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # },
 ]
-
+AUTH_USER_MODEL = 'auth.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -121,3 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
 STATIC_URL = '/static/'
+
+

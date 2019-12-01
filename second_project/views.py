@@ -15,6 +15,10 @@ def main(request):
     books = Book.objects.all()
     return render(request, "second_project/library.html", {"books": books})
 
+def review(request, id):
+    books = Book.objects.get(id=id)
+    return render(request, "second_project/review.html", {"books": books})
+
 class RegisterFormView(FormView):
     form_class = UserCreationForm
     success_url = "/second_project"
@@ -46,6 +50,7 @@ def create(request):
         book.title = request.POST.get("title")
         book.author = request.POST.get("author")
         book.review = request.POST.get("review")
+        book.reviewer = request.user
         book.save()
     return HttpResponseRedirect("/second_project")
 

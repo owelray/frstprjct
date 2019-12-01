@@ -89,6 +89,7 @@ h2 {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  padding-top: 2.6vh;
 }
 .btn h2:hover {
   background-color: white;
@@ -106,6 +107,7 @@ a {
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   /* height: 100%; */
   flex-grow: 1;
   /* align-items: center; */
@@ -113,13 +115,13 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  height: 6vh;
   align-items: center;
   flex-grow: 0;
 }
   .footer {
-    flex-grow: 0;
-
+  flex-grow: 0;
+  height: 6vh;
 }
 
 ul {
@@ -184,11 +186,14 @@ li {
   padding-right: 80px;
 }
 .description {
-  /* flex-grow: 3; */
-  text-align: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
 }
 .description p {
-  font-size: 34px;
+  font-size: 3vh;
+  align-self: center;
+  text-align: center;
 }
 .main {
   flex-grow: 1;
@@ -200,6 +205,8 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
 }
 
 
@@ -305,51 +312,79 @@ background-color: rgb(141, 235, 238);
 .review {
   /* background: url(../images/h-book-colors.png) no-repeat center top / cover; */
   background-color: #006e85;
-  height: 490px;
-  width: 380px;
+  border-radius: 13px;
+  min-height: 30vh;
+  height: auto;
+  width: 39vh;
   margin: 15px;
   text-align: center;
-  /* display: flex; */
+  display: flex;
   /* justify-content: space-between; */
-  /* flex-direction: column; */
+  flex-direction: column;
 }
 .review h1 {
   font-family: Gravity-Regular;
-  font-size: 33px;
+  font-size: 3.4vh;
   color: white; /*#748ed9*/ /*#006e85 */
   font-style: normal;
 }
 .review h2 {
-  font-size: 25px;
+  font-size: 2.6vh;
   font-family: Gravity-Light;
 }
 .review p {
   font-family: Gravity-Ultralight;
-  font-size: 22;
+  font-size: 2.3vh;
 }
 .book-title {
   word-wrap: break-word;
+  max-height: 9.1vh;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+}
+.book-title h1:hover {
+  color: goldenrod;
+  text-decoration: none;
+  transition: all 0.2s linear;
 }
 .book-author {
   word-wrap: break-word;
 }
-.review-content {
-  width: 100%;
-  /* height: 50%; */
-  /* white-space: pre-wrap; */
-  word-wrap: break-word;
+.rate {
+  font-size: 3vh;
+  color: white;
 }
-.review-content p {
-  height: 100%;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  word-wrap: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
+.rate i {
+  padding-top: 0.5vh;
 }
 .reviewer  {
-  text-align: right;
+  padding-right: 10px;
+   text-align: right; 
+  /* height: 50px; */
 }
+ .review-content {
+  width: 100%;
+  height: 16.8vh;
+  /* display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  white-space: normal;*/
+  overflow-wrap: break-word;  
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+
+}
+/* .review-content p {
+  /* word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;  
+}*/
+
 
 
 

@@ -14,13 +14,20 @@
     {% for book in books  %}
     <div class="review">
       <div class="book-title">
-        <h1>{{ book.title }}</h1>
+        <a href="review/{{ book.id }}">
+          <h1>{{ book.title }}</h1>
+        </a>
       </div>
       <div class="book-author">
         <h2>{{ book.author }}</h2>
       </div>
-      <div class="review-content">
-        <p>{{ book.review  }}</p>
+      <div class="review-content" id="review">
+        <p>{{ book.review|linebreaks }}</p>
+      </div>
+      <div class="rate">
+        <h2>Do you like it?</h2>
+        <a href="#"><i class="fas fa-thumbs-up"></i></a>
+        <a href="#"><i class="fas fa-thumbs-down"></i></a>
       </div>
       <div class="reviewer">
         <h2>{{ book.reviewer }}</h2>

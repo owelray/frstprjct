@@ -9,5 +9,6 @@ urlpatterns = [
         path('logout/', views.LogoutView.as_view()),
         path('add/logout/', views.LogoutView.as_view()),
         path('add/', views.add),
-        path('add/create/', views.create)
+        path('add/create/', views.create),
+        path('review/<int:id>/', views.review)
 ]
