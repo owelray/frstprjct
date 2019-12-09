@@ -164,7 +164,11 @@ li {
 .title h1 {
   font-size: 54px;
 }
-
+.title h1:hover {
+  transition: 0.2s ease-in;
+  background: #2d8fba;
+  border-radius: 40px;
+}
 .register {
   /* flex-grow: 1; */
   text-align: center;
@@ -346,7 +350,7 @@ background-color: rgb(141, 235, 238);
   text-align: center;
 }
 .book-title h1:hover {
-  color: goldenrod;
+  color: gold;
   text-decoration: none;
   transition: all 0.2s linear;
 }
@@ -358,16 +362,24 @@ background-color: rgb(141, 235, 238);
   color: white;
 }
 .rate i {
-  padding-top: 0.5vh;
+  padding-left: 0.5vh;
+}
+.rate i:hover {
+  color: gold;
+  transition: all 0.1s linear;
 }
 .reviewer  {
   padding-right: 10px;
    text-align: right; 
   /* height: 50px; */
 }
+.reviewer h2:hover {
+  color: gold;
+  transition: all 0.1s linear;
+}
  .review-content {
   width: 100%;
-  height: 16.8vh;
+  height: 16.5vh;
   /* display: block;
   white-space: pre-wrap;
   word-wrap: break-word;

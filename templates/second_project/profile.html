@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+{{ users_list }}
+{% for book in books %}
+      <h2><a href="/second_project/review/{{ book.id }}">{{ book.title }}</a></h2>
+{% endfor %}
+
+
+
+
+{#{% for book in books %}#}
+{#    <p>{{ book.id }}</p>#}
+{#    {% for like in book.likedone.all %}#}
+{#        <h2>{{ like.id }}</h2>#}
+{#    {% endfor %}#}
+{#{% endfor %}#}
+{#        {% for likes in book.likedone.all %}#}
+{#           <p> {{ likes.id }} </p>#}
+{#            <h2> {{ likes }}</h2>#}
+{#        {% endfor %}#}
+
+{#    {% for like in books.likedone.all %}#}
+{#    <p>{{ like.book_id }}</p>#}
+{#    {% endfor %}#}
+</body>
+</html>

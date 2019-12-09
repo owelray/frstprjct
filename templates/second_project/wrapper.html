@@ -2,13 +2,12 @@
 {% load static %}
 <html lang="en">
 <link rel="stylesheet" href="{% static "/css/second_project.css" %}">
-
+{% block head %}
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
-  <script src="https://kit.fontawesome.com/71a235d8ae.js" crossorigin="anonymous"></script>
 </head>
-
+{% endblock%}
 <body>
   <div class="wrapper">
     {% block navbar %}
@@ -23,7 +22,9 @@
           </a>
         </li>
         <li class="title">
-          <h1>Library</h1>
+          <a href="user/{{ user.id }}">
+            <h1>My profile</h1>
+          </a>
         </li>
         {% if user.is_authenticated %}
         <li class="add-book btn">

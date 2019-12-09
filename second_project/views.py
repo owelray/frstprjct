@@ -9,6 +9,8 @@ from django.contrib.auth import logout
 from django.template.context_processors import request
 from django.http.request import HttpRequest
 from .models import Book
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 # from django import forms
 
 def main(request):
@@ -18,6 +20,12 @@ def main(request):
 def review(request, id):
     books = Book.objects.get(id=id)
     return render(request, "second_project/review.html", {"books": books})
+
+def profile(request, id):
+    users = User.objects.get(id=id)
+    books = Book.objects.filter(likedone=users)
+    # likes = Book.objects.filter(likedone=id)
+    return render(request, "second_project/profile.html", {"users_list": users, "books": books, })
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
@@ -57,3 +65,20 @@ def create(request):
 def add(request):
     books = Book.objects.all()
     return render(request, "second_project/add.html", {"books": books})
+
+def reviewlike(request, add_id):
+    book_item = Book.objects.get(id = add_id)
+    user_tags = User.objects.filter(users_likes = add_id)
+    current_user = request.user
+    if current_user not in user_tags:
+        try:
+            book_item = Book.objects.get(id = add_id)
+            book_item.likenumber +=1
+            book_item.likedone.add(current_user)
+            book_item.save()
+            return HttpResponseRedirect("/second_project/")
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect("/second_project")
+    else:
+        return HttpResponseRedirect("/second_project")
+
