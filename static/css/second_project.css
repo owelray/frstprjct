@@ -52,7 +52,7 @@ p {
   color: white;
   margin: 0;
   font-family: Gravity-Regular;
-  font-size: 26px;
+  font-size: 2.728226652675761vh;
 }
 .btn {
   display: block;
@@ -60,7 +60,7 @@ p {
 .btn p:hover {
   background-color: white;
   border: 1px white solid;
-  border-radius: 20px;
+  border-radius: 2.0986358866736623vh;
   transition: 0.3s ease-in;
   color: black;
   padding: 0.2em;
@@ -75,12 +75,12 @@ p {
 
 h1 {
   font-family: Gravity-Light;
-  font-size: 45px;
+  font-size: 4.72193074501574vh;
   color: white;
 }
 h2 {
   font-family: Gravity-UltraLight;
-  font-size: 30px;
+  font-size: 3.147953830010493vh;
   color: white;
 }
 .main {
@@ -94,7 +94,7 @@ h2 {
 .btn h2:hover {
   background-color: white;
   border: 1px white solid;
-  border-radius: 20px; 
+  border-radius: 2.0986358866736623vh; 
   transition: 0.3s ease-in; 
   color: black;
   padding: 0.2em; 
@@ -115,13 +115,13 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
-  height: 6vh;
+  height: 8vh;
   align-items: center;
   flex-grow: 0;
 }
   .footer {
   flex-grow: 0;
-  height: 6vh;
+  height: 11vh;
 }
 
 ul {
@@ -139,15 +139,18 @@ li {
   /* flex-grow: 1; */
 }
 .homebutton a {
-  background-image: url(/static/images/home_icon.png);
-  height: 54px;
-  width: 54px;
+  background: url(/static/images/home_icon.png) no-repeat center top / cover;
+  image-rendering: -moz-crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;  
+  image-rendering: crisp-edges;
+  height: 5.6663168940188875vh;
+  width: 5.6663168940188875vh;
   display: block;
 }
 .homebutton a:hover {
-  background-image: url(/static/images/home_icon_hover.png);
+  background: url(/static/images/home_icon_hover.png) no-repeat center top / cover;
   background-color: white;
-  border-radius: 40px;
+  border-radius:  4.197271773347325vh;
   transition: 0.3s ease-in;
   color: black;
   padding: 0.2em;
@@ -155,39 +158,39 @@ li {
 .returnbutton { 
   text-align: center;
   /* flex-grow: 1; */
-  padding-left: 20px;
+  padding-left: 2.0986358866736623vh;
 }
 .title {
   flex-grow: 3; 
   text-align: center;
 }
 .title h1 {
-  font-size: 54px;
+  font-size: 5.6663168940188875vh;
 }
 .title h1:hover {
   transition: 0.2s ease-in;
   background: #2d8fba;
-  border-radius: 40px;
+  border-radius: 4.197271773347325vh;
 }
 .register {
   /* flex-grow: 1; */
   text-align: center;
-  padding-right: 20px;
+  padding-right: 2.0986358866736623vh;
 }
 .login {
   /* flex-grow: 1; */
   text-align: center;
-  padding-right: 80px;
+  padding-right: 8.39454354669465vh;
 }
 .add-book {
   /* flex-grow: 1; */
   text-align: center;
-  padding-right: 20px;
+  padding-right: 2.0986358866736623vh;
 }
 .logout {
   /* flex-grow: 1;  */
   text-align: center;
-  padding-right: 80px;
+  padding-right: 8.39454354669465vh;
 }
 .description {
   display: flex;
@@ -233,7 +236,7 @@ form {
   display: block;
   color: white;
   font-family: Gravity-Light;
-  font-size: 34px;
+  font-size: 3.5676810073452256vh;
   text-align: center;
 }
 .review-form input::placeholder {
@@ -241,14 +244,14 @@ form {
 }
 .review-form input[type=text] {
     background-color: #01bcc6;
-    height: 50px;
+    height: 5.246589716684155vh;
     /* width: auto; */
     border: none;
-    font-size: 20px;
+    font-size: 2.0986358866736623vh;
     font-weight: 400;
     color: #efefee;
     font-family: Gravity-Regular;
-    border-radius: 23px;
+    border-radius: 2.4134312696747116vh;
     text-align: center;
     outline: 0;
 }
@@ -257,24 +260,24 @@ form {
   height: 100%;
   /* width: auto; */
   border: none;
-  font-size: 22px;
+  font-size: 2.308499475341028vh;
   font-weight: 400;
   color: #efefee;
   font-family: Gravity-Regular;
-  border-radius: 15px;
+  border-radius: 1.5739769150052465vh;
   text-align: center;
   outline: 0;
   resize: none;
 }
 .title-input input{
-  width: 560px;
+  width: 58.76180482686254vh;
 }
 .author-input input{
-  width: 390px;
+  width: 40.923399790136415vh;
 }
 .review-input textarea {
-  width: 500px;
-  height: 310px;
+  width: 52.46589716684155vh;
+  height: 32.528856243441766vh;
 }
 .review-input textarea::placeholder {
   color: #133357;
@@ -292,17 +295,17 @@ input[type='submit'] {
   width: 25%;
   font-family: Gravity-Light;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 2.5183630640083945vh;
   color: black;
-  line-height: 40px;
+  line-height: 4.197271773347325vh;
   text-align: center;
   background-color: #09cac7;
   border: 1px #87314e solid;
   /* opacity: 1; */
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: 5.246589716684155vh;
   /* padding: 0px 20px; */
-  border-radius: 20px;
+  border-radius: 2.0986358866736623vh;
   outline: 0;
 }
 
@@ -316,11 +319,11 @@ background-color: rgb(141, 235, 238);
 .review {
   /* background: url(../images/h-book-colors.png) no-repeat center top / cover; */
   background-color: #006e85;
-  border-radius: 13px;
+  border-radius: 1.3641133263378804vh;
   min-height: 30vh;
   height: auto;
   width: 39vh;
-  margin: 15px;
+  margin:  1.5739769150052465vh;
   text-align: center;
   display: flex;
   /* justify-content: space-between; */
@@ -369,7 +372,7 @@ background-color: rgb(141, 235, 238);
   transition: all 0.1s linear;
 }
 .reviewer  {
-  padding-right: 10px;
+  padding-right: 1.0493179433368311vh;
    text-align: right; 
   /* height: 50px; */
 }

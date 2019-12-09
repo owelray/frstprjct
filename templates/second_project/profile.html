@@ -6,9 +6,14 @@
 </head>
 <body>
 {{ users_list }}
-{% for book in books %}
-      <h2><a href="/second_project/review/{{ book.id }}">{{ book.title }}</a></h2>
+{% for like in likes %}
+      <h2><a href="/second_project/review/{{ like.id }}">{{ like.title }}</a></h2>
 {% endfor %}
+
+{% for book in books %}
+    <p>{{ book.title }}</p>
+{% endfor %}
+
 
 
 
