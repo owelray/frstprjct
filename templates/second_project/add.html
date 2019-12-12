@@ -11,22 +11,25 @@
         <p>Return to portfolio</p>
       </a>
     </li>
-    <li class="title">
-      <!-- <h1>Library</h1> -->
-    </li>
     {% if user.is_authenticated %}
-    <li class="logout btn">
-      <a href="logout?next=/second_project/">
+    <li class="title">
+      <h1><a href="/second_project/user/{{ user.id }}">My profile</a></h1>
+    </li>
+    <li class="logout btn padding-logout">
+      <a href="/second_project/logout?next={{ request.path }}">
         <h2>LogOut</h2>
       </a>
     </li>
     {% else %}
+    <li class="title btn padding-title">
+      <h1>Library</h1>
+    </li>
     <li class="register btn">
-      <a href="register?next={{ request.path }}">
+      <a href="/second_project/register?next={{ request.path }}">
         <h2>SignUp</h2>
     </li>
     <li class="login btn">
-      <a href="login?next={{ request.path }}">
+      <a href="/second_project/login?next={{ request.path }}">
         <h2>SignIn</h2>
       </a>
     </li>

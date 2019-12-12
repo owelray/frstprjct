@@ -22,10 +22,10 @@ def review(request, id):
     return render(request, "second_project/review.html", {"books": books})
 
 def profile(request, id):
-    users = User.objects.get(id=id)
-    books = Book.objects.filter(likedone=users)
-    # likes = Book.objects.filter(likedone=id)
-    return render(request, "second_project/profile.html", {"users_list": users, "books": books, })
+    userinfo = User.objects.get(id=id)
+    likes = Book.objects.filter(likedone=id)
+    books = Book.objects.filter(reviewer_id=id)
+    return render(request, "second_project/profile.html", {"userinfo": userinfo, "books": books, "likes": likes})
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
@@ -63,8 +63,9 @@ def create(request):
     return HttpResponseRedirect("/second_project")
 
 def add(request):
+    # userinfo = User.objects.get(id=id)
     books = Book.objects.all()
-    return render(request, "second_project/add.html", {"books": books})
+    return render(request, "second_project/add.html", {"books": books,})
 
 def reviewlike(request, add_id):
     book_item = Book.objects.get(id = add_id)

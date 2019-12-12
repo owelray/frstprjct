@@ -1,5 +1,6 @@
 {% extends "second_project/wrapper.html" %}
 {% block head %}
+
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
@@ -8,7 +9,7 @@
 {% endblock %}
 
 {% block description %}
-<div class="description">
+<div class="description flex-grow1">
   <p>
     This is the second project that has a system of users <br />
     who can create a review for any book.<br />
@@ -39,9 +40,9 @@
         </h2>
       </div>
       <div class="reviewer">
-          <a href="user/{{ book.reviewer_id }}">
-        <h2>{{ book.reviewer }}</h2>
-          </a>
+        <a href="user/{{ book.reviewer_id }}">
+          <h2>{{ book.reviewer }}</h2>
+        </a>
       </div>
     </div>
     {% endfor %}

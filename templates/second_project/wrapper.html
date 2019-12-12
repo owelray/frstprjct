@@ -3,11 +3,13 @@
 <html lang="en">
 <link rel="stylesheet" href="{% static "/css/second_project.css" %}">
 {% block head %}
+
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
 </head>
 {% endblock%}
+
 <body>
   <div class="wrapper">
     {% block navbar %}
@@ -21,29 +23,30 @@
             <p>Return to portfolio</p>
           </a>
         </li>
-        <li class="title">
-          <a href="user/{{ user.id }}">
-            <h1>My profile</h1>
-          </a>
-        </li>
         {% if user.is_authenticated %}
+        <li class="title btn">
+          <h1><a href="/second_project/user/{{ user.id }}">My profile</a></h1>
+        </li>
         <li class="add-book btn">
-          <a href="add">
+          <a href="/second_project/add">
             <h2>Make a review</h2>
           </a>
         </li>
         <li class="logout btn">
-          <a href="logout?next=/second_project/">
+          <a href="/second_project/logout?next={{ request.path }}">
             <h2>LogOut</h2>
           </a>
         </li>
         {% else %}
+        <li class="title btn padding-title">
+          <h1>Library</h1>
+        </li>
         <li class="register btn">
-          <a href="register?next={{ request.path }}">
+          <a href="/second_project/register?next={{ request.path }}">
             <h2>SignUp</h2>
         </li>
         <li class="login btn">
-          <a href="login?next={{ request.path }}">
+          <a href="/second_project/login?next={{ request.path }}">
             <h2>SignIn</h2>
           </a>
         </li>
