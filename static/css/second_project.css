@@ -75,13 +75,23 @@ p {
 }
 h1 {
   font-family: Gravity-Light;
-  font-size: 4.72193074501574vh;
+  font-size: 6.72193074501574vh;
   color: white;
 }
 h2 {
   font-family: Gravity-UltraLight;
   font-size: 3.147953830010493vh;
   color: white;
+}
+h3 {
+  font-family: Gravity-Light;
+  font-size: 4vh;
+  color: white;
+}
+h4 {
+  font-family: Gravity-Ultralight;
+  color: white;
+  font-size: 3vh;
 }
 .btn h2:hover {
   background-color: white;
@@ -101,6 +111,21 @@ a {
   flex-basis: 0;
   justify-content: center;
 }
+.text-center {
+  text-align: center;
+}
+.width-85 {
+  width: 85%;
+}
+.padding-top {
+  padding-top: 5vh;
+}
+.justify-center {
+  justify-content: center;
+}
+.flex {
+  display: flex;
+}
 
 
 
@@ -118,13 +143,14 @@ a {
   /* align-items: center; */
 }
 .description {
+  width: 89%;
   display: flex;
   justify-content: center;
-}
-.description  {
   font-size: 3vh;
   align-self: center;
   text-align: center;
+  word-break: break-word;
+  flex-direction: column;
 }
 .main {
   display: flex;
@@ -449,12 +475,28 @@ background-color: rgb(141, 235, 238);
 .list-title-size h1 {
   font-size: 6.6663168940188875vh;
 }
-/* .reviews-list {
-} 
- .likes {
 
-} */
 /* end profile.html */
+
+
+
+
+/* review.html */
+.content {
+  display: flex;
+  justify-content: center;
+}
+.text {
+  /* width: 85%; */
+  /* display: flex;
+  justify-content: center; */
+  /* text-align: center; */
+  word-break: break-word;
+}
+.text p {
+  font-size: 4vh;
+}
+/* end review.html */
 
 
 

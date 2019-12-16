@@ -10,3 +10,4 @@ class Book(models.Model):
     reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     likenumber = models.IntegerField(default=0)
     likedone = models.ManyToManyField(User, related_name='users_likes')
+    date = models.DateTimeField(auto_now_add=True)

@@ -18,8 +18,8 @@ def main(request):
     return render(request, "second_project/library.html", {"books": books})
 
 def review(request, id):
-    books = Book.objects.get(id=id)
-    return render(request, "second_project/review.html", {"books": books})
+    book = Book.objects.get(id=id)
+    return render(request, "second_project/review.html", {"book": book})
 
 def profile(request, id):
     userinfo = User.objects.get(id=id)

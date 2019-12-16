@@ -24,7 +24,7 @@
             {% for book in books %}
             <div class="review" id="{{ book.id }}">
                 <div class="book-title">
-                    <a href="review/{{ book.id }}">
+                    <a href="/second_project/review/{{ book.id }}">
                         <h1>{{ book.title }}</h1>
                     </a>
                 </div>
@@ -36,15 +36,15 @@
                 </div>
                 <div class="rate">
                     <h2>Do you like it?
-                        <a href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                        <a href="/second_project/rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
                         {{ book.likenumber }}
                     </h2>
                 </div>
-                <!-- <div class="reviewer">
-                    <a href="user/{{ book.reviewer_id }}">
-                        <h2>{{ book.reviewer }}</h2>
-                    </a>
-                </div> -->
+{#                <!-- <div class="reviewer">#}
+{#                    <a href="user/{{ book.reviewer_id }}">#}
+{#                        <h2>{{ book.reviewer }}</h2>#}
+{#                    </a>#}
+{#                </div> -->#}
             </div>
             {% endfor %}
         </div>
@@ -57,7 +57,7 @@
             {% for like in likes %}
             <div class="review" id="{{ like.id }}">
                 <div class="book-title">
-                    <a href="review/{{ like.id }}">
+                    <a href="/second_project/review/{{ like.id }}">
                         <h1>{{ like.title }}</h1>
                     </a>
                 </div>
@@ -69,12 +69,12 @@
                 </div>
                 <div class="rate">
                     <h2>Do you like it?
-                        <a href="rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
+                        <a href="/second_project/rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
                         {{ like.likenumber }}
                     </h2>
                 </div>
                 <div class="reviewer">
-                    <a href="user/{{ like.reviewer_id }}">
+                    <a href="/second_project/user/{{ like.reviewer_id }}">
                         <h2>{{ like.reviewer }}</h2>
                     </a>
                 </div>

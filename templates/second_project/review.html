@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
+{% extends "second_project/wrapper.html" %}
+{% block head %}
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/71a235d8ae.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <p>{{ books.review }}</p>
-    <p> test </p>
-</body>
-</html>
+{% endblock %}
+
+{% block description %}
+<div class="description">
+    <h1>{{ book.title }}</h1>
+    <h3>{{ book.author }}</h3>
+    <h4>Published in {{ book.date }}</h4>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="text padding-top width-85">
+        <p>{{ book.review|linebreaksbr }}</p>
+        <!-- <p> test </p> -->
+    </div>
+</div>
+<div class="rate flex-grow1 padding-top justify-center flex">
+    <div class="like-btn width-85">
+        <h2>Do you like it?
+            <a href="/second_project/rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+            {{ book.likenumber }}
+        </h2>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+<div class="footer">
+    <p>footer</p>
+</div>
+{% endblock %}
