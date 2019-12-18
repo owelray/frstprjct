@@ -11,6 +11,7 @@
 {% block description %}
 <div class="description">
     <h1>{{ userinfo }}'s profile</h1>
+    <h4>Registered in {{ userinfo.date_joined }}</h4>
 </div>
 {% endblock %}
 
@@ -40,11 +41,11 @@
                         {{ book.likenumber }}
                     </h2>
                 </div>
-{#                <!-- <div class="reviewer">#}
-{#                    <a href="user/{{ book.reviewer_id }}">#}
-{#                        <h2>{{ book.reviewer }}</h2>#}
-{#                    </a>#}
-{#                </div> -->#}
+                <div class="reviewer">
+                    <a href="user/{{ book.reviewer_id }}">
+                        <h2>{{ book.reviewer }}</h2>
+                    </a>
+                </div>
             </div>
             {% endfor %}
         </div>

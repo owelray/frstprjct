@@ -11,6 +11,7 @@ from django.http.request import HttpRequest
 from .models import Book
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import ReviewForm
 # from django import forms
 
 def main(request):
@@ -52,20 +53,25 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(redirect_to)
 
-def create(request):
-    if request.method == "POST":
-        book = Book()
-        book.title = request.POST.get("title")
-        book.author = request.POST.get("author")
-        book.review = request.POST.get("review")
-        book.reviewer = request.user
-        book.save()
-    return HttpResponseRedirect("/second_project")
-
 def add(request):
-    # userinfo = User.objects.get(id=id)
-    books = Book.objects.all()
-    return render(request, "second_project/add.html", {"books": books,})
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            book = Book()
+            book.title = request.POST.get("title")
+            book.author = request.POST.get("author")
+            book.review = request.POST.get("review")
+            book.reviewer = request.user
+            book.save()
+            return HttpResponseRedirect("/second_project")
+        else:
+            return HttpResponseRedirect("/second_project/nt")
+    else:
+        form = ReviewForm()
+    return render(request, 'second_project/add.html', {'form': form})
+
+def nt(request):
+    return render(request, 'second_project/nt.html')
 
 def reviewlike(request, add_id):
     book_item = Book.objects.get(id = add_id)

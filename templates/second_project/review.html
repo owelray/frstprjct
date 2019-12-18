@@ -12,7 +12,8 @@
 <div class="description">
     <h1>{{ book.title }}</h1>
     <h3>{{ book.author }}</h3>
-    <h4>Published in {{ book.date }}</h4>
+    <h4>Published in {{ book.date }} by <a href="/second_project/user/{{ book.reviewer_id }}">{{ book.reviewer }}</a>
+    </h4>
 </div>
 {% endblock %}
 

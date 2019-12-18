@@ -39,26 +39,29 @@
 {% endblock navbar %}
 {% block content %}
 <div class="review-form">
-  <form method="POST" action="create/">
+  <form method="POST">
     {% csrf_token %}
     <div class="inputs">
       <div class="title-input">
         <label> Title of the book <br>
-          <input type="text" name="title" value="{{ book.title }}" autocomplete="off"
-            placeholder="Enter the title of the book (60 symbols max)" required maxlength="60" contenteditable="true">
+          {{ form.title }}
+          {#          <input type="text" name="title" value="{{ book.title }}" autocomplete="off"#}
+          {#            placeholder="Enter the title of the book (60 symbols max)" required maxlength="60" contenteditable="true">#}
         </label>
       </div>
       <div class="author-input">
         <label> Author of the book <br>
-          <input type="text" name="author" value="{{ book.author }}" autocomplete="off"
-            placeholder="Enter author of the book (35 symbols)" required maxlength="35">
+          {{ form.author }}
+          {#          <input type="text" name="author" value="{{ book.author }}" autocomplete="off"#}
+          {#            placeholder="Enter author of the book (35 symbols)" required maxlength="35">#}
         </label>
       </div>
     </div>
     <div class="review-input">
       <label> Review <br>
-        <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"
-          placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>
+        {{ form.review }}
+        {#        <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"#}
+        {#          placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>#}
       </label>
     </div>
     <div class="publish-button">

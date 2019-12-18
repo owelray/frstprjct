@@ -105,6 +105,12 @@ a {
   text-decoration: none;
   color: white;
 }
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -126,6 +132,11 @@ a {
 .flex {
   display: flex;
 }
+.nt {
+  display: flex;
+  justify-content: center;
+}
+
 
 
 
@@ -151,6 +162,14 @@ a {
   text-align: center;
   word-break: break-word;
   flex-direction: column;
+  padding-bottom: 1vh;
+}
+.description a {
+  text-decoration: underline;
+}
+.description a:hover {
+  color: gold;
+  transition: 0.2s ease-in;
 }
 .main {
   display: flex;
@@ -280,9 +299,8 @@ li {
 }
 .review {
   /* background: url(../images/h-book-colors.png) no-repeat center top / cover; */
-  background-color: #006e85;
-  border-radius: 1.3641133263378804vh;
-  min-height: 30vh;
+  /* background-color: #658DD6; */
+  background-image: linear-gradient(to left top, #1b7b94, #077595, #007096, #006997, #026396);  border-radius: 1.9vh;
   height: auto;
   width: 39vh;
   margin:  1.5739769150052465vh;
@@ -423,8 +441,8 @@ form {
   width: 40.923399790136415vh;
 }
 .review-input textarea {
-  width: 52.46589716684155vh;
-  height: 32.528856243441766vh;
+  width: 73.45225603357818vh;
+  height: 48.268625393494226vh;
 }
 .review-input textarea::placeholder {
   color: #133357;
