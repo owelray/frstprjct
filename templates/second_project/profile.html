@@ -37,7 +37,15 @@
                 </div>
                 <div class="rate">
                     <h2>Do you like it?
-                        <a href="/second_project/rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                        {% if user.is_authenticated %}
+                            {% if user in book.likedone.all %}
+                                <a class="liked" href="/second_project/rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                            {% else %}
+                                <a href="/second_project/rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                            {% endif %}
+                        {% else %}
+                            <a href="/second_project/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
+                        {% endif %}
                         {{ book.likenumber }}
                     </h2>
                 </div>
@@ -70,7 +78,15 @@
                 </div>
                 <div class="rate">
                     <h2>Do you like it?
+                        {% if user.is_authenticated %}
+                            {% if user in like.likedone.all %}
+                        <a class="liked" href="/second_project/rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
+                            {% else %}
                         <a href="/second_project/rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
+                            {% endif %}
+                        {% else %}
+                        <a href="/second_project/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
+                        {% endif %}
                         {{ like.likenumber }}
                     </h2>
                 </div>
@@ -87,6 +103,7 @@
 {% endblock %}
 {% block footer %}
 <div class="footer">
-    <p>footer</p>
-</div>
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
 {% endblock %}

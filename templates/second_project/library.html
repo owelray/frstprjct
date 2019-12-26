@@ -1,12 +1,4 @@
 {% extends "second_project/wrapper.html" %}
-{% block head %}
-
-<head>
-  <meta charset="UTF-8" />
-  <title>Document</title>
-  <script src="https://kit.fontawesome.com/71a235d8ae.js" crossorigin="anonymous"></script>
-</head>
-{% endblock %}
 
 {% block description %}
 <div class="description flex-grow1">
@@ -35,8 +27,16 @@
       </div>
       <div class="rate">
         <h2>Do you like it?
-          <a href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
-          {{ book.likenumber }}
+            {% if user.is_authenticated %}
+                {% if user in book.likedone.all %}
+                    <a class="liked" href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                    {% else %}
+                    <a href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>
+                {% endif %}
+            {% else %}
+                <a href="/second_project/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
+            {% endif %}
+            {{ book.likenumber }}
         </h2>
       </div>
       <div class="reviewer">
@@ -51,6 +51,11 @@
 {% endblock content %}
 {% block footer %}
 <div class="footer">
-  <p>footer</p>
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:owelray@gmail.com"><i class="far fa-envelope"></i></a>
+      <a href="https://t.me/owelray"><i class="fab fa-telegram"></i></a>
+    </div>
 </div>
 {% endblock footer %}

@@ -16,7 +16,7 @@
       <h1><a href="/second_project/user/{{ user.id }}">My profile</a></h1>
     </li>
     <li class="logout btn padding-logout">
-      <a href="/second_project/logout?next={{ request.path }}">
+      <a href="/second_project/logout?next=/second_project/">
         <h2>LogOut</h2>
       </a>
     </li>
@@ -38,6 +38,7 @@
 </div>
 {% endblock navbar %}
 {% block content %}
+{% if user.is_authenticated %}
 <div class="review-form">
   <form method="POST">
     {% csrf_token %}
@@ -69,4 +70,17 @@
     </div>
   </form>
 </div>
+{% else %}
+    <div class="non-authorized">
+        <h1>You have to authorize</h1>
+        <h3><a href="/second_project/login?next={{ request.path }}">Sign In</a></h3>
+    </div>
+{% endif %}
 {% endblock content %}
+{% block footer %}
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+{% endblock %}
