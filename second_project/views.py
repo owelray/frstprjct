@@ -12,6 +12,8 @@ from .models import Book
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ReviewForm
+from django.contrib import messages
+from django.urls import reverse_lazy, reverse
 # from django import forms
 
 def main(request):
@@ -30,7 +32,7 @@ def profile(request, id):
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
-    success_url = "/second_project"
+    success_url = "/second_project/login"
     template_name = "second_project/register.html"
 
     def form_valid(self, form):
@@ -40,12 +42,17 @@ class RegisterFormView(FormView):
 class LoginFormView(FormView):
     form_class = AuthenticationForm
     template_name = "second_project/login.html"
-    success_url = "/second_project"
+    success_url = '/second_project/'
 
     def form_valid(self, form):
         self.user = form.get_user()
         login(self.request, self.user)
         return super(LoginFormView, self).form_valid(form)
+
+    # def get_success_url(self):
+        # self.request.GET.get('next','')
+         # redirect_to = request.GET.get('next', '')
+         # return HttpResponseRedirect(redirect_to)
 
 class LogoutView(View):
     def get(self, request):
@@ -77,15 +84,26 @@ def reviewlike(request, add_id):
     book_item = Book.objects.get(id = add_id)
     user_tags = User.objects.filter(users_likes = add_id)
     current_user = request.user
-    if current_user not in user_tags:
-        try:
-            book_item = Book.objects.get(id = add_id)
-            book_item.likenumber +=1
-            book_item.likedone.add(current_user)
-            book_item.save()
-            return HttpResponseRedirect("/second_project/")
-        except ObjectDoesNotExist:
-            return HttpResponseRedirect("/second_project")
+    if request.user.is_authenticated:
+        if current_user not in user_tags:
+            try:
+                book_item = Book.objects.get(id = add_id)
+                book_item.likenumber +=1
+                book_item.likedone.add(current_user)
+                book_item.save()
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            except ObjectDoesNotExist:
+                return HttpResponseRedirect("/second_project")
+        else:
+            try:
+                book_item = Book.objects.get(id=add_id)
+                book_item.likenumber -= 1
+                book_item.likedone.remove(current_user)
+                book_item.save()
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            except ObjectDoesNotExist:
+                return HttpResponseRedirect("/second_project")
     else:
-        return HttpResponseRedirect("/second_project")
+        return HttpResponseRedirect("/second_project/nt")
+
 

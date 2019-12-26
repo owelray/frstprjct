@@ -12,5 +12,5 @@ urlpatterns = [
         path('nt', views.nt),
         path('review/<int:id>/', views.review),
         path('rate/<int:add_id>/', views.reviewlike),
-        path('user/<int:id>/', views.profile)
+        path('user/<int:id>/', views.profile),
 ]
