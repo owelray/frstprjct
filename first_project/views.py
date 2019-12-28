@@ -5,7 +5,7 @@ from .models import Person
 
 def info(request):
     people = Person.objects.all()
-    return render(request, "first_project.html", {"people": people})
+    return render(request, "first_project/first_project.html", {"people": people})
 
 def create(request):
     if request.method == "POST":
@@ -25,7 +25,7 @@ def edit(request, id):
             person.save()
             return HttpResponseRedirect("/first_project")
         else:
-            return render(request, "edit.html", {"person":person})
+            return render(request, "first_project/edit.html", {"person":person})
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>User not found</h2>")
 
