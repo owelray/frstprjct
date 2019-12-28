@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
     'first_project',
-    'second_project',
 ]
 
 MIDDLEWARE = [
