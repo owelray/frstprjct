@@ -1,5 +1,5 @@
 from django.contrib import admin
-from first_project .models import Book
+from second_project .models import Book
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'likenumber',)
