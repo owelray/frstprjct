@@ -18,7 +18,7 @@
 }
 
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   padding: 0;
   margin: 0;
 }
@@ -57,7 +57,7 @@ p {
   color: white;
   margin: 0;
   font-family: Gravity-Regular;
-  font-size: 2.728226652675761vh;
+  font-size: 2.134646962233169vw;
 }
 .flex-grow1 {
   flex-grow: 1;
@@ -68,35 +68,35 @@ p {
 .btn p:hover {
   background-color: white;
   border: 1px white solid;
-  border-radius: 2.0986358866736623vh;
+  border-radius: 200px;
   transition: 0.3s ease-in;
   color: black;
   padding: 0.1em;
 }
 h1 {
   font-family: Gravity-Light;
-  font-size: 6.72193074501574vh;
+  font-size: 8.2vmin;
   color: white;
 }
 h2 {
   font-family: Gravity-UltraLight;
-  font-size: 3.147953830010493vh;
+  font-size: 2.4630541871921183vw;
   color: white;
 }
 h3 {
   font-family: Gravity-Light;
-  font-size: 4vh;
+  font-size: 3.1297208538587844vw;
   color: white;
 }
 h4 {
   font-family: Gravity-Ultralight;
   color: white;
-  font-size: 3vh;
+  font-size: 2.3472906403940885vw;
 }
 .btn h2:hover {
   background-color: white;
   border: 1px white solid;
-  border-radius: 2.0986358866736623vh; 
+  border-radius: 200px; 
   transition: 0.3s ease-in; 
   color: black;
   padding: 0.1em; 
@@ -158,12 +158,15 @@ img {
   width: 89%;
   display: flex;
   justify-content: center;
-  font-size: 3vh;
+  font-size: 2.3472906403940885vw;
   align-self: center;
   text-align: center;
   word-break: break-word;
   flex-direction: column;
   padding-bottom: 1vh;
+}
+.description p {
+  font-size: 3.5vmin;
 }
 .description a {
   text-decoration: underline;
@@ -196,7 +199,7 @@ img {
   justify-content: center;
 }
 .footer i {
-  font-size: 6vh;
+  font-size: 6vmin;
   color: white;
 }
 .footer i:hover {
@@ -256,12 +259,12 @@ li {
   padding-left: 2.0986358866736623vh;
 }
 .title {
-  flex-grow: 3;
+  flex-grow: 2;
   text-align: center;
   justify-items: center;
 }
 .title h1 {
-  font-size: 6.6663168940188875vh;
+  font-size: 5vw;
 }
 .title a:hover {
   transition: 0.2s ease-in;
@@ -285,10 +288,15 @@ li {
 .logout {
   /* flex-grow: 1;  */
   text-align: center;
-  padding-right: 1vh;
+  justify-content: center;
+  /* padding-right: 1vh; */
+  display: flex;
+}
+.logout h2 {
+  width: 10vw;
 }
 .padding-logout {
-  padding-right: 20.39454354669465vh
+  flex-grow: 1;
 }
 .padding-title {
   padding-right: 5vh;
@@ -361,7 +369,7 @@ li {
   word-wrap: break-word;
 }
 .rate {
-  font-size: 3vh;
+  font-size: 2.3472906403940885vw;
   color: white;
 }
 .rate i {
@@ -424,7 +432,7 @@ form {
   display: block;
   color: white;
   font-family: Gravity-Light;
-  font-size: 3.5676810073452256vh;
+  font-size: 2.7914614121510675vw;
   text-align: center;
 }
 .review-form input::placeholder {
@@ -432,40 +440,58 @@ form {
 }
 .review-form input[type=text] {
   background-color: #01bcc6;
-  height: 5.246589716684155vh;
+  /* height: 5.246589716684155vh; */
   /* width: auto; */
   border: none;
-  font-size: 2.0986358866736623vh;
+  font-size: 1.6420361247947455vw;
   font-weight: 400;
   color: #efefee;
   font-family: Gravity-Regular;
-  border-radius: 2.4134312696747116vh;
+  border-radius: 300px;
   text-align: center;
   outline: 0;
 }
 .review-form textarea {
   background-color: #01bcc6;
-  height: 100%;
+  /* height: 10%; */
   /* width: auto; */
   border: none;
-  font-size: 2.308499475341028vh;
+  font-size: 1.6vw;
   font-weight: 400;
   color: #efefee;
   font-family: Gravity-Regular;
-  border-radius: 1.5739769150052465vh;
+  border-radius: 30px;
   text-align: center;
   outline: 0;
   resize: none;
 }
+.title-input {
+  width: 50vw;
+}
 .title-input input{
-  width: 58.76180482686254vh;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 6.9vmin;
+  padding: 5px;
+}
+.author-input {
+  width: 30vw;
 }
 .author-input input{
-  width: 40.923399790136415vh;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 6.9vmin;
+  padding: 5px;
 }
+
 .review-input textarea {
-  width: 73.45225603357818vh;
-  height: 48.268625393494226vh;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 45vmin;
+  padding: 5px;
 }
 .review-input textarea::placeholder {
   color: #133357;
@@ -473,25 +499,26 @@ form {
 .review-input {
   display: flex;
   justify-content: center;
+  padding-top: 30px;
 }
 .publish-button {
   justify-content: center;
   display: flex;
+  height: 4.5vmin;
+  padding-top: 30px;
 }
 input[type='submit'] {
   height: 100%;
   width: 25%;
   font-family: Gravity-Light;
   font-weight: 700;
-  font-size: 2.5183630640083945vh;
+  font-size: 1.6vw;
   color: black;
-  line-height: 4.197271773347325vh;
   text-align: center;
   background-color: #09cac7;
   border: 1px #87314e solid;
   /* opacity: 1; */
   cursor: pointer;
-  margin-top: 5.246589716684155vh;
   /* padding: 0px 20px; */
   border-radius: 2.0986358866736623vh;
   outline: 0;
@@ -523,7 +550,7 @@ background-color: rgb(141, 235, 238);
   text-align: center;
 }
 .list-title-size h1 {
-  font-size: 6.6663168940188875vh;
+  font-size: 7.5vmin;
 }
 
 /* end profile.html */
@@ -544,7 +571,7 @@ background-color: rgb(141, 235, 238);
   word-break: break-word;
 }
 .text p {
-  font-size: 4vh;
+  font-size: 3.1297208538587844vw;
 }
 /* end review.html */
 
@@ -560,7 +587,7 @@ background-color: rgb(141, 235, 238);
   flex-direction: column;
   display: flex;
   align-items: center;
-  font-size: 3.5676810073452256vh;
+  font-size: 2.7914614121510675vw;
   color: white;
   justify-content: center;
 }
@@ -582,7 +609,7 @@ background-color: rgb(141, 235, 238);
   height: 5.246589716684155vh;
   /* width: auto; */
   border: none;
-  font-size: 2.0986358866736623vh;
+  font-size: 1.6420361247947455vw;
   font-weight: 400;
   color: #efefee;
   font-family: Gravity-Regular;
@@ -595,7 +622,7 @@ button[type='submit'] {
   height: 100%;
   font-family: Gravity-Light;
   font-weight: 700;
-  font-size: 2.5183630640083945vh;
+  font-size: 1.9704433497536946vw;
   color: black;
   line-height: 4.197271773347325vh;
   text-align: center;
@@ -617,7 +644,7 @@ background-color: rgb(141, 235, 238);
 }
 .errorlist {
   text-align: start;
-  font-size: 2.0986358866736623vh;
+  font-size: 1.6420361247947455vw;
   color: black;
 }
 /* end registration.html and login.html */
