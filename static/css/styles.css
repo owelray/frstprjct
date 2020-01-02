@@ -144,7 +144,9 @@ a {
     padding-top: 50px;
 }
 .project {
-    background-image: linear-gradient(to right bottom, #677da1, #5985a5, #4d8ca6, #4592a2, #47989b);
+    color: white;
+    background-color: rgba(24, 23, 23, 0.253);
+    /* background-image: linear-gradient(to right bottom, #677da1, #5985a5, #4d8ca6, #4592a2, #47989b); */
     /* background-color: rgba(81, 101, 124, 0.521);     */
     width: 50%;
     text-align: center;
