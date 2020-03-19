@@ -86,12 +86,20 @@ html {
 }
 
 .input {
+  margin-top: 120px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
 }
 .input h2 {
   margin-bottom: 30px;
+}
+
+.output {
+  margin-top: 120px;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
 }
 
 .form {
@@ -198,6 +206,11 @@ h3 {
   font-family: Gravity-Light;
   font-size: 3.1297208538587844vw;
   color: black;
+}
+
+th {
+  font-family: Gravity-Regular;
+  font-size: 2vh;
 }
 
 /* Switch checkbox */

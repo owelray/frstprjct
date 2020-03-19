@@ -29,7 +29,7 @@
       <div class="input flex f-grow1 text-center">
         <div class="form">
           <form method="POST">
-              {% csrf_token %}
+            {% csrf_token %}
             <h2>Paste long Url</h2>
             <div class="url-form">
               <div class="url-input">
@@ -50,7 +50,23 @@
         </div>
       </div>
       <div class="output f-grow1 text-center">
-        <h2>test</h2>
+        <h2>Your urls</h2>
+        <div class="userurls">
+          <table>
+            <thead>
+              <th>Short Url</th>
+              <th>Clicks made</th>
+              <th>Unique Visitors</th>
+            </thead>
+            {% for url in user %}
+            <tr>
+              <td><a href="http://{{ url.short_url }}">{{ url.short_url }}</a></td>
+              <td>{{ url.clicks_counter }}</td>
+              <td>{{ url.unique_visitors }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
       </div>
     </div>
     <div class="footer">
