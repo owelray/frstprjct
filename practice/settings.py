@@ -52,6 +52,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'practice.urls'
+SECRET_KEY = SECRET_KEY
+SESSION_SAVE_EVERY_REQUEST = True
+
 
 TEMPLATES = [
     {
