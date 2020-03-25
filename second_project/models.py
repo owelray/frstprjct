@@ -9,3 +9,7 @@ class Url(models.Model):
     creator = models.CharField(max_length=32, default='Unknown')
     clicks_counter = models.IntegerField(default=0)
     unique_visitors = models.IntegerField(default=0)
+
+class Visitor(models.Model):
+    url = models.ForeignKey(Url, on_delete=models.CASCADE)
+    session_key = models.CharField(max_length=32, null=False, default='Unknown')
