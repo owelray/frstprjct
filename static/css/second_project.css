@@ -141,7 +141,7 @@ input[type=submit]:hover {
   color: #133357;
   font-size: 1.6420361247947455vw;
 }
-.url-input input[type=text] {
+.url-input input[type=url] {
   background-color: cadetblue;
   height: 70px;
   width: 50%;
@@ -163,7 +163,7 @@ input[type=submit]:hover {
 }
 .footer i {
   font-size: 6vmin;
-  color: black;
+  color: #87ce4a;
   transition: 0.2s ease-in;
 }
 .footer i:hover {
@@ -230,6 +230,16 @@ td {
   color: aquamarine;
   font-family: Gravity-Regular;
   font-size: 2vh;
+}
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.nt {
+  display: flex;
+  justify-content: center;
 }
 
 /* Switch checkbox */
