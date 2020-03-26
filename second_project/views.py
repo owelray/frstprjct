@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from .forms import UrlForm
 from django.views.generic.base import View
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponseNotFound, HttpResponse
+
+from .forms import UrlForm
 from .models import Url, Visitor
-from django.contrib.auth import logout
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponseNotFound
-import hashlib
+
+from practice.local_settings import *
+
+import hashlib, pyshorteners
 
 HOST = 'localhost:8000/second_project/'
 
@@ -14,13 +17,13 @@ class MainView(View):
             form = UrlForm(request.POST)
             if form.is_valid():
                 url = Url()
-                url.creator = request.session.session_key
-                url.long_url = request.POST.get('url')
                 url.use_bitly = request.POST.get('shortening_method')
                 if url.use_bitly == None:
                     url.use_bitly = False
                 if url.use_bitly == "on":
                     url.use_bitly = True
+                url.creator = request.session.session_key
+                url.long_url = request.POST.get('url')
                 url.url_hash = hashlib.md5(url.long_url.encode())
                 url.url_hash = url.url_hash.hexdigest()[:8]
                 url_hash_exists = Url.objects.filter(url_hash=url.url_hash)
@@ -30,6 +33,10 @@ class MainView(View):
                     url_hash_exists = Url.objects.filter(url_hash=url.url_hash)
                     continue
                 url.short_url = HOST + url.url_hash
+                if url.use_bitly == True:
+                    shortener = pyshorteners.Shortener(api_key=bitly_acces_token)
+                    url.bitly_url = shortener.bitly.short('https://' + url.short_url)
+                    url.save()
                 url.save()
                 return HttpResponseRedirect('/second_project')
             else:
@@ -91,5 +98,9 @@ class DeleteUrlView(View):
                 return HttpResponseRedirect('/second_project/nt')
         except Url.DoesNotExist:
             return HttpResponseNotFound('<h2>Url not found</h2>')
+
+class SecretView(View):
+    def get(self, request):
+        return render(request, 'second_project/nt.html')
 
 

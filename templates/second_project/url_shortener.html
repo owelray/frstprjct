@@ -7,10 +7,7 @@
   <meta charset="UTF-8" />
   <title>Url shortener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script
-      src="https://kit.fontawesome.com/71a235d8ae.js"
-      crossorigin="anonymous"
-    ></script> -->
+  <script src="https://kit.fontawesome.com/71a235d8ae.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -26,6 +23,31 @@
       </div>
     </div>
     <div class="container">
+      {% if user.count == 0 %}
+      <div class="input flex f-grow1 text-center">
+        <div class="form">
+          <form method="POST">
+            {% csrf_token %}
+            <h2>Paste long Url</h2>
+            <div class="url-form">
+              <div class="url-input">
+                {{ form.url }}
+              </div>
+              <div class="publish-button">
+                <input type="submit" value="Create">
+              </div>
+              <div class="checkbox">
+                <h3>Use bit.ly</h3>
+                <label class="switch">
+                  {{ form.shortening_method }}
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% else %}
       <div class="input flex f-grow1 text-center">
         <div class="form">
           <form method="POST">
@@ -63,18 +85,20 @@
               <td class="urls"><a href="http://{{ url.short_url }}">{{ url.short_url }}</a></td>
               <td>{{ url.clicks_counter }}</td>
               <td>{{ url.unique_visitors }}</td>
-              <td class="padding-r10px"><a href="/second_project/clear/{{ url.url_hash }}" class="urls-buttons">Clear stats</a></td>
+              <td class="padding-r10px"><a href="/second_project/clear/{{ url.url_hash }}" class="urls-buttons">Clear
+                  stats</a></td>
               <td><a href="/second_project/delete/{{ url.url_hash }}" class='urls-buttons'>Delete</a></td>
             </tr>
             {% endfor %}
           </table>
         </div>
       </div>
+      {% endif %}
     </div>
     <div class="footer">
       <div class="footer-links">
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/owelray/frstprjct"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nzaliznyi/"><i class="fab fa-linkedin-in"></i></a>
         <a href="mailto:owelray@gmail.com"><i class="far fa-envelope"></i></a>
         <a href="https://t.me/owelray"><i class="fab fa-telegram"></i></a>
       </div>

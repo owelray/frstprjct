@@ -4,6 +4,7 @@ from django.db import models
 class Url(models.Model):
     long_url = models.URLField()
     short_url = models.URLField()
+    bitly_url = models.URLField(null=True)
     use_bitly = models.BooleanField(default=False)
     url_hash = models.CharField(max_length=32, default=0)
     creator = models.CharField(max_length=32, default='Unknown')
