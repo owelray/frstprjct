@@ -82,7 +82,11 @@
             </thead>
             {% for url in user %}
             <tr>
+              {% if url.use_bitly == 1 %}
+              <td class="urls"><a href="http://{{ url.short_url }}">{{ url.bitly_url }}</a></td>
+              {% else %}
               <td class="urls"><a href="http://{{ url.short_url }}">{{ url.short_url }}</a></td>
+              {% endif %}
               <td>{{ url.clicks_counter }}</td>
               <td>{{ url.unique_visitors }}</td>
               <td class="padding-r10px"><a href="/second_project/clear/{{ url.url_hash }}" class="urls-buttons">Clear
