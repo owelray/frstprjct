@@ -36,6 +36,7 @@ class MainView(View):
                 if url.use_bitly == True:
                     shortener = pyshorteners.Shortener(api_key=bitly_acces_token)
                     url.bitly_url = shortener.bitly.short('https://' + url.short_url)
+                    url.bitly_url[:8]
                     url.save()
                 url.save()
                 return HttpResponseRedirect('/second_project')
@@ -80,6 +81,8 @@ class ClearStatsView(View):
                 url.clicks_counter = 0
                 url.unique_visitors = 0
                 url.save()
+                visitors = Visitor.objects.filter(url_id=url.id)
+                visitors.delete()
                 return HttpResponseRedirect('/second_project')
             else:
                 return HttpResponseRedirect('/second_project/nt')
