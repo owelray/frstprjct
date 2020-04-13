@@ -1,0 +1,61 @@
+{% extends "gamelist/wrapper.html" %}
+
+{% block description %}
+<div class="description flex-grow1">
+  <p>
+    This is the gamelist project that has a system of users <br />
+    who can create a review for any game.<br />
+    The user can also rate reviews of other users.
+  </p>
+</div>
+{% endblock description %}
+{% block content %}
+{#<div class="main">#}
+{#  <div class="review-list">#}
+{#    {% for book in books  %}#}
+{#    <div class="review" id="{{ book.id }}">#}
+{#      <div class="book-title">#}
+{#        <a href="review/{{ book.id }}">#}
+{#          <h1>{{ book.title }}</h1>#}
+{#        </a>#}
+{#      </div>#}
+{#      <div class="book-author">#}
+{#        <h2>{{ book.author }}</h2>#}
+{#      </div>#}
+{#      <div class="review-content" id="review">#}
+{#        <p>{{ book.review|linebreaks }}</p>#}
+{#      </div>#}
+{#      <div class="rate">#}
+{#        <h2>Do you like it?#}
+{#            {% if user.is_authenticated %}#}
+{#                {% if user in book.likedone.all %}#}
+{#                    <a class="liked" href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>#}
+{#                    {% else %}#}
+{#                    <a href="rate/{{ book.id }}"><i class="fas fa-thumbs-up"></i></a>#}
+{#                {% endif %}#}
+{#            {% else %}#}
+{#                <a href="/first_project/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>#}
+{#            {% endif %}#}
+{#            {{ book.likenumber }}#}
+{#        </h2>#}
+{#      </div>#}
+{#      <div class="reviewer">#}
+{#        <a href="user/{{ book.reviewer_id }}">#}
+{#          <h2>{{ book.reviewer }}</h2>#}
+{#        </a>#}
+{#      </div>#}
+{#    </div>#}
+{#    {% endfor %}#}
+{#  </div>#}
+{#</div>#}
+{% endblock content %}
+{% block footer %}
+<div class="footer">
+    <div class="footer-links">
+      <a href="https://github.com/owelray/frstprjct"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/nzaliznyi/"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:owelray@gmail.com"><i class="far fa-envelope"></i></a>
+      <a href="https://t.me/owelray"><i class="fab fa-telegram"></i></a>
+    </div>
+</div>
+{% endblock footer %}
