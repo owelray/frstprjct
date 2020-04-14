@@ -17,8 +17,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
-    'first_project',
     'second_project',
+    'gamelist',
 ]
 
 MIDDLEWARE = [
