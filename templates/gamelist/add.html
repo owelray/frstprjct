@@ -1,5 +1,9 @@
-{% extends "first_project/wrapper.html" %}
-{% load static %}
+{% extends "gamelist/wrapper.html" %}
+{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review</title>
+{% endblock %}
 {% block navbar %}
 <div class="header">
   <ul>
@@ -27,6 +31,7 @@
     <li class="register btn">
       <a href="/first_project/register?next={{ request.path }}">
         <h2>SignUp</h2>
+      </a>
     </li>
     <li class="login btn">
       <a href="/first_project/login?next={{ request.path }}">
@@ -44,19 +49,19 @@
     {% csrf_token %}
     <div class="inputs">
       <div class="title-input">
-        <label> Title of the book <br>
+        <label> Title of the game <br>
           {{ form.title }}
           {#          <input type="text" name="title" value="{{ book.title }}" autocomplete="off"#}
           {#            placeholder="Enter the title of the book (60 symbols max)" required maxlength="60" contenteditable="true">#}
         </label>
       </div>
-      <div class="author-input">
-        <label> Author of the book <br>
-          {{ form.author }}
+{#      <div class="author-input">#}
+{#        <label> Author of the book <br>#}
+{#          {{ form.author }}#}
           {#          <input type="text" name="author" value="{{ book.author }}" autocomplete="off"#}
           {#            placeholder="Enter author of the book (35 symbols)" required maxlength="35">#}
-        </label>
-      </div>
+{#        </label>#}
+{#      </div>#}
     </div>
     <div class="review-input">
       <label> Review <br>
@@ -64,6 +69,35 @@
         {#        <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"#}
         {#          placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>#}
       </label>
+    </div>
+    <div class="game-rate">
+        <label>Rate this game</label>
+        <div class="rating" id="rate">
+          <input type="radio" id="star10" name="rating" value="10" /><label class = "full" data-score="10" for="star10"></label>
+          <input type="radio" id="star9half" name="rating" value="9 and a half" /><label class="half" data-score="9.5" for="star9half"></label>
+          <input type="radio" id="star9" name="rating" value="9" /><label class = "full" data-score="9" for="star9"></label>
+          <input type="radio" id="star8half" name="rating" value="8 and a half" /><label class="half" data-score="8.5" for="star8half"></label>
+          <input type="radio" id="star8" name="rating" value="8" /><label class = "full" data-score="8" for="star8"></label>
+          <input type="radio" id="star7half" name="rating" value="7 and a half" /><label class="half" data-score="7.5" for="star7half"></label>
+          <input type="radio" id="star7" name="rating" value="7" /><label class = "full" data-score="7" for="star7"></label>
+          <input type="radio" id="star6half" name="rating" value="6 and a half" /><label class="half" data-score="6.5" for="star6half"></label>
+          <input type="radio" id="star6" name="rating" value="6" /><label class = "full" data-score="6" for="star6"></label>
+          <input type="radio" id="star5half" name="rating" value="5 and a half" /><label class="half" data-score="5.5" for="star5half"></label>
+          <input type="radio" id="star5" name="rating" value="5" /><label class = "full" data-score="5" for="star5"></label>
+          <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" data-score="4.5" for="star4half"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label class = "full" data-score="4" for="star4"></label>
+          <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" data-score="3.5" for="star3half"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label class = "full" data-score="3" for="star3"></label>
+          <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" data-score="2.5" for="star2half"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label class = "full" data-score="2" for="star2"></label>
+          <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" data-score="1.5" for="star1half"></label>
+          <input type="radio" id="star1" name="rating" value="1" /><label class = "full" data-score="1" for="star1"></label>
+          <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" data-score="0.5" for="starhalf"></label>
+        </div>
+        <div class="result">
+              <h1 id="result">
+              </h1>
+          </div>
     </div>
     <div class="publish-button">
       <input type="submit" value="Publish">
@@ -78,9 +112,12 @@
 {% endif %}
 {% endblock content %}
 {% block footer %}
-    <div class="footer">
-        <div class="footer-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
+{#    <div class="footer">#}
+{#        <div class="footer-links">#}
+{#            <a href="#"><i class="fab fa-github"></i></a>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
+{% block scripts %}
+  <script src="/static/js/script.js"></script>
 {% endblock %}

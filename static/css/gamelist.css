@@ -1,3 +1,4 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 @font-face {
   font-family: "Gravity-Regular";
   src: url("../fonts/Gravity-Regular.otf") format("truetype");
@@ -465,13 +466,12 @@ form {
 .review-input {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 .publish-button {
   justify-content: center;
   display: flex;
   height: 4.5vmin;
-  padding-top: 30px;
 }
 input[type="submit"] {
   height: 100%;
@@ -601,3 +601,54 @@ button[type="submit"]:hover {
   color: black;
 }
 /* end registration.html and login.html */
+
+/* rate stars */
+
+/****** Style Star Rating Widget *****/
+
+.game-rate {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.rating {
+  border: none;
+}
+
+.rating > input {
+  display: none;
+}
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+} /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
