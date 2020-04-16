@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ReviewForm
+from .models import GameReview
 
 def gamelist_main(request):
     return render (request, 'gamelist/gamelist.html')
@@ -43,17 +44,17 @@ class AddView(View):
             form = ReviewForm(request.POST)
             if form.is_valid():
                 if request.user.is_authenticated:
-                    book = Book()
-                    book.title = request.POST.get("title")
-                    book.author = request.POST.get("author")
-                    book.review = request.POST.get("review")
-                    book.reviewer = request.user
-                    book.save()
-                    return HttpResponseRedirect("/first_project")
+                    game = GameReview()
+                    game.title = request.POST.get("title")
+                    game.review = request.POST.get("review")
+                    game.rating = request.POST.get("rating")
+                    game.reviewer = request.user
+                    game.save()
+                    return HttpResponseRedirect("/gamelist")
                 else:
-                    return HttpResponseRedirect('/first_project/nt')
+                    return HttpResponseRedirect('/gamelist/nt')
             else:
-                return HttpResponseRedirect("/first_project/nt")
+                return HttpResponseRedirect("/gamelist/nt")
     def get(self, request):
         form = ReviewForm()
         return render(request, 'gamelist/add.html', {'form': form})
