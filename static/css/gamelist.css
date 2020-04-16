@@ -58,6 +58,7 @@ p {
   margin: 0;
   font-family: Gravity-Regular;
   font-size: 2.134646962233169vw;
+  transition: 0.2s ease;
 }
 .flex-grow1 {
   flex-grow: 1;
@@ -77,21 +78,25 @@ h1 {
   font-family: Gravity-Light;
   font-size: 8.2vmin;
   color: white;
+  transition: 0.2s ease-in;
 }
 h2 {
   font-family: Gravity-UltraLight;
   font-size: 2.4630541871921183vw;
   color: white;
+  transition: 0.2s ease-in;
 }
 h3 {
   font-family: Gravity-Light;
   font-size: 3.1297208538587844vw;
   color: white;
+  transition: 0.2s ease-in;
 }
 h4 {
   font-family: Gravity-Ultralight;
   color: white;
   font-size: 2.3472906403940885vw;
+  transition: 0.2s ease-in;
 }
 .btn h2:hover {
   background-color: white;
@@ -104,13 +109,20 @@ h4 {
 a {
   text-decoration: none;
   color: white;
+  transition: 0.2s ease;
+}
+i {
+  transition: 0.1s linear;
+}
+label {
+  transition: 0.2s ease-in;
 }
 img {
   width: auto;
   max-width: 100%;
   height: auto;
+  transition: 0.1s linear;
 }
-
 .list {
   display: flex;
   flex-wrap: wrap;
@@ -194,6 +206,9 @@ img {
   font-size: 6vmin;
   color: white;
   /* transition: 0.2s ease-in black; */
+}
+.footer i:hover {
+  color: black;
 }
 
 .footer-links {
@@ -351,7 +366,7 @@ li {
 }
 .rate i:hover {
   color: gold;
-  transition: all 0.1s linear;
+  transition: 0.1s linear;
 }
 .liked {
   color: gold;
@@ -396,7 +411,7 @@ form {
   /* flex-wrap: wrap; */
 }
 .review-form label {
-  display: block;
+  /* display: flex; */
   color: white;
   font-family: Gravity-Light;
   font-size: 2.7914614121510675vw;
@@ -432,8 +447,14 @@ form {
   outline: 0;
   resize: none;
 }
+.counter {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
 .title-input {
   width: 50vw;
+  text-align: center;
 }
 .title-input input {
   display: block;
@@ -454,7 +475,7 @@ form {
 }
 
 .review-input textarea {
-  display: block;
+  display: flex;
   box-sizing: border-box;
   width: 100%;
   height: 45vmin;
@@ -463,8 +484,12 @@ form {
 .review-input textarea::placeholder {
   color: #133357;
 }
+.review-input label {
+  position: relative;
+}
 .review-input {
   display: flex;
+  position: relative;
   justify-content: center;
   padding-top: 10px;
 }
@@ -488,6 +513,7 @@ input[type="submit"] {
   /* padding: 0px 20px; */
   border-radius: 2.0986358866736623vh;
   outline: 0;
+  transition: 0.1s ease-in;
 }
 
 input[type="submit"]:hover {
@@ -604,8 +630,6 @@ button[type="submit"]:hover {
 
 /* rate stars */
 
-/****** Style Star Rating Widget *****/
-
 .game-rate {
   display: flex;
   align-items: center;
@@ -617,12 +641,18 @@ button[type="submit"]:hover {
   border: none;
 }
 
+.result h2 {
+  font-family: Gravity-UltraLight;
+  font-size: 3.1198686371100166vw;
+  color: white;
+}
+
 .rating > input {
   display: none;
 }
 .rating > label:before {
   margin: 5px;
-  font-size: 1.25em;
+  font-size: 1.05em;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
@@ -638,13 +668,11 @@ button[type="submit"]:hover {
   float: right;
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
-
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
 .rating:not(:checked) > label:hover ~ label {
   color: #ffd700;
-} /* hover previous stars in list */
+}
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
