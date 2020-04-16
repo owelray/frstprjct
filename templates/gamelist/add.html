@@ -45,7 +45,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="review-form">
-  <form method="POST">
+  <form method="POST" name="add_form">
     {% csrf_token %}
     <div class="inputs">
       <div class="title-input">
@@ -64,39 +64,40 @@
 {#      </div>#}
     </div>
     <div class="review-input">
-      <label> Review <br>
+      <label> Review
         {{ form.review }}
-        {#        <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"#}
-        {#          placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>#}
+{#                <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"#}
+{#                  placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>#}
+      <small id="counter" class="counter"></small>
       </label>
     </div>
     <div class="game-rate">
         <label>Rate this game</label>
         <div class="rating" id="rate">
-          <input type="radio" id="star10" name="rating" value="10" /><label class = "full" data-score="10" for="star10"></label>
-          <input type="radio" id="star9half" name="rating" value="9 and a half" /><label class="half" data-score="9.5" for="star9half"></label>
-          <input type="radio" id="star9" name="rating" value="9" /><label class = "full" data-score="9" for="star9"></label>
-          <input type="radio" id="star8half" name="rating" value="8 and a half" /><label class="half" data-score="8.5" for="star8half"></label>
-          <input type="radio" id="star8" name="rating" value="8" /><label class = "full" data-score="8" for="star8"></label>
-          <input type="radio" id="star7half" name="rating" value="7 and a half" /><label class="half" data-score="7.5" for="star7half"></label>
-          <input type="radio" id="star7" name="rating" value="7" /><label class = "full" data-score="7" for="star7"></label>
-          <input type="radio" id="star6half" name="rating" value="6 and a half" /><label class="half" data-score="6.5" for="star6half"></label>
-          <input type="radio" id="star6" name="rating" value="6" /><label class = "full" data-score="6" for="star6"></label>
-          <input type="radio" id="star5half" name="rating" value="5 and a half" /><label class="half" data-score="5.5" for="star5half"></label>
-          <input type="radio" id="star5" name="rating" value="5" /><label class = "full" data-score="5" for="star5"></label>
-          <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" data-score="4.5" for="star4half"></label>
-          <input type="radio" id="star4" name="rating" value="4" /><label class = "full" data-score="4" for="star4"></label>
-          <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" data-score="3.5" for="star3half"></label>
-          <input type="radio" id="star3" name="rating" value="3" /><label class = "full" data-score="3" for="star3"></label>
-          <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" data-score="2.5" for="star2half"></label>
-          <input type="radio" id="star2" name="rating" value="2" /><label class = "full" data-score="2" for="star2"></label>
-          <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" data-score="1.5" for="star1half"></label>
-          <input type="radio" id="star1" name="rating" value="1" /><label class = "full" data-score="1" for="star1"></label>
-          <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" data-score="0.5" for="starhalf"></label>
+          <input type="radio" id="star10"  data-score="10" name="rating" value="10" /><label class = "full" data-score="10" for="star10"></label>
+          <input type="radio" id="star9half" data-score="9.5" name="rating" value="9.5" /><label class="half" data-score="9.5" for="star9half"></label>
+          <input type="radio" id="star9" data-score="9" name="rating" value="9" /><label class = "full" data-score="9" for="star9"></label>
+          <input type="radio" id="star8half" data-score="8.5" name="rating" value="8.5" /><label class="half" data-score="8.5" for="star8half"></label>
+          <input type="radio" id="star8" data-score="8" name="rating" value="8" /><label class = "full" data-score="8" for="star8"></label>
+          <input type="radio" id="star7half" data-score="7.5" name="rating" value="7.5" /><label class="half" data-score="7.5" for="star7half"></label>
+          <input type="radio" id="star7" data-score="7" name="rating" value="7" /><label class = "full" data-score="7" for="star7"></label>
+          <input type="radio" id="star6half" data-score="6.5" name="rating" value="6.5" /><label class="half" data-score="6.5" for="star6half"></label>
+          <input type="radio" id="star6" data-score="6" name="rating" value="6" /><label class = "full" data-score="6" for="star6"></label>
+          <input type="radio" id="star5half" data-score="5.5" name="rating" value="5.5" /><label class="half" data-score="5.5" for="star5half"></label>
+          <input type="radio" id="star5" data-score="5" name="rating" value="5" /><label class = "full" data-score="5" for="star5"></label>
+          <input type="radio" id="star4half" data-score="4.5" name="rating" value="4.5" /><label class="half" data-score="4.5" for="star4half"></label>
+          <input type="radio" id="star4" data-score="4" name="rating" value="4" /><label class = "full" data-score="4" for="star4"></label>
+          <input type="radio" id="star3half" data-score="3.5" name="rating" value="3.5" /><label class="half" data-score="3.5" for="star3half"></label>
+          <input type="radio" id="star3" data-score="3" name="rating" value="3" /><label class = "full" data-score="3" for="star3"></label>
+          <input type="radio" id="star2half" data-score="2.5" name="rating" value="2.5" /><label class="half" data-score="2.5" for="star2half"></label>
+          <input type="radio" id="star2" data-score="2" name="rating" value="2" /><label class = "full" data-score="2" for="star2"></label>
+          <input type="radio" id="star1half" data-score="1.5" name="rating" value="1.5" /><label class="half" data-score="1.5" for="star1half"></label>
+          <input type="radio" id="star1" data-score="1" name="rating" value="1" /><label class = "full" data-score="1" for="star1"></label>
+          <input type="radio" id="starhalf" data-score="0.5" name="rating" value="0.5" /><label class="half" data-score="0.5" for="starhalf"></label>
         </div>
         <div class="result">
-              <h1 id="result">
-              </h1>
+              <h2 id="result">
+              </h2>
           </div>
     </div>
     <div class="publish-button">
