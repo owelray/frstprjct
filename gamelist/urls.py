@@ -7,5 +7,5 @@ urlpatterns = [
         path('login/', views.LoginFormView.as_view()),
         path('logout/', views.LogoutView.as_view()),
         path('add/', views.AddView.as_view()),
-        path('test/', views.test)
+        path('<int:id>/definition/', views.DefiniteGame.as_view())
 ]
