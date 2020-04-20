@@ -1,4 +1,4 @@
-{% extends "first_project/wrapper.html" %}
+{% extends "gamelist/wrapper.html" %}
 {% block head %}
 
 <head>
@@ -10,33 +10,50 @@
 
 {% block description %}
 <div class="description">
-    <h1>{{ book.title }}</h1>
-    <h3>{{ book.author }}</h3>
-    <h4>Published in {{ book.date }} by <a href="/first_project/user/{{ book.reviewer_id }}">{{ book.reviewer }}</a>
-    </h4>
+    <div class="decoration-none">
+        <h1>
+        {% if game.game_url != Null %}
+            <a href="{{ game.game_url }}" target="_blank">
+                {{ game.title }}
+            </a>
+        {% else %}
+            {{ game.title }}  
+        {% endif %}
+        </h1>
+    </div>
+{#    <h3>{{ game }}</h3>#}
+    <div class="decoration-underline">
+        <h4>Published in {{ game.date }} by <a href="/gamelist/user/{{ game.reviewer_id }}">{{ game.reviewer }}</a>
+        </h4>
+    </div>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="content">
     <div class="text padding-top width-85">
-        <p>{{ book.review|linebreaksbr }}</p>
-        <!-- <p> test </p> -->
+        <p>{{ game.review|linebreaksbr }}</p><br>
+        <h3>  
+            {{ game.rating|floatformat }}/10 <i class="fas fa-star yellow"></i>
+            {% if user.id == game.reviewer_id %}
+            <h3 class="right_buttons">(<a href="#">Edit</a>)   (<a href="#">Delete</a>)</h3>
+            {% endif %}
+        </h3>
     </div>
 </div>
 <div class="rate flex-grow1 padding-top justify-center flex">
     <div class="like-btn width-85">
         <h2>Do you like it?
             {% if user.is_authenticated %}
-                {% if user in book.likedone.all %}
-                    <a class="liked" href="/first_project/rate/{{ book.id }}?next=/first_project/review/{{ book.id }}/"><i class="fas fa-thumbs-up"></i></a>
+                {% if user in game.likedone.all %}
+                    <a class="liked" href="/gamelist/rate/{{ game.id }}?next=/gamelist/{{ game.id }}/"><i class="fas fa-thumbs-up"></i></a>
                     {% else %}
-                    <a href="/first_project/rate/{{ book.id }}?next=/first_project/review/{{ book.id }}/"><i class="fas fa-thumbs-up"></i></a>
+                    <a href="/gamelist/rate/{{ game.id }}?next=/gamelist/{{ game.id }}/"><i class="fas fa-thumbs-up"></i></a>
                 {% endif %}
             {% else %}
-                <a href="/first_project/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
+                <a href="/gamelist/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
             {% endif %}
-            {{ book.likenumber }}
+            {{ game.likenumber }}
         </h2>
     </div>
 </div>
