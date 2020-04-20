@@ -1,17 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <p>Hello</p>
-    {% for result in results %}
+{% extends "gamelist/wrapper.html" %}
+{% block navbar %}
+{% endblock navbar %}
+
+{% block description %}
+  <div class="description flex-grow0">
+    <h1>Choose the game you have reviewed <br></h1>
+    <h2>(Your choice will help me to find more information about the game)</h2>
+  </div>
+{% endblock description %}
+
+{% block content %}
+  <div class="main">
+    <div class="search-list">
+      {% for result in results %}
         {% if result.name|length > 0 %}
+        <div class="search-result">
+          <div class="game-title">
+            {% if result.name|length > 0 %}
+              <a href="{{ result.url }}" target="_blank">
+                <h1>{{ result.name }}</h1>
+              </a>
+            {% endif %}
+          </div>
+          <div class="game-release">
+          {% if result.first_release_date|length > 0 %}
+            <h2>Released on {{ result.first_release_date }}</h2>
+          {% else %}
+            <h2>Release date is not provided</h2>
+          {% endif %}
+          </div>
+          <div class="game-genres">
+          {% if result.genres|length > 0 %}
+              <h2>{{ result.genres }}</h2>
+          {% else %}
+              <h2>Genres is not provided</h2>
+          {% endif %}
+          </div>
+          <div class="game-content">
+            <p>
+              {% if result.summary|length > 0 and result.storyline|length == 0 %}
+                {{ result.summary|linebreaks }}
+              {% elif result.summary|length == 0 and result.storyline|length == 0%}
+                Game description is not provided 
+              {% else %}
+                {{ result.storyline|linebreaks }}   
+              {% endif %}
+            </p>
+          </div>
+          <div class="see-more">
+            <a href="{{ result.url }}" target="_blank">
+              <h2 class="more-button">See more</h2>
+            </a>
+          </div>
+          <div class="choose-button">
+            <a href="/gamelist/{{ game.id }}/definition/{{ result.id }}">
+              <h2>Choose</h2>
+            </a>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="alternate-method">
+      <h1>Did not find the game you need?</h1>
+      <h2>You can try to specify the name of the game more accurately <a href='/gamelist/{{ game.id }}/rename'>here</a>.<br>
+          Or you can <a href='/gamelist/{{ game.id }}'>leave the name of the game as it was</a>.
+      </h2>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block footer %}
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://github.com/owelray/frstprjct"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/nzaliznyi/"><i class="fab fa-linkedin-in"></i></a>
+    <a href="mailto:owelray@gmail.com"><i class="far fa-envelope"></i></a>
+    <a href="https://t.me/owelray"><i class="fab fa-telegram"></i></a>
+  </div>
+</div>
+{% endblock footer %}
+
+<!-- {% for result in results %}
+      {% if result.name|length > 0 %}
         <h2>{{ result.name }}</h2>
         <p>{{ result.genres }}</p>
-        {% endif %}
-    {% endfor %}
-  </body>
-</html>
+      {% endif %}
+    {% endfor %} -->
