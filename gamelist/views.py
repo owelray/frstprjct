@@ -1,3 +1,4 @@
+from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
@@ -9,7 +10,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ReviewForm
 from .models import GameReview
-from .game_info_request import igdbapi_search
+from .game_info_request import igdbapi_search, igdbapi_getinfo
 
 
 def gamelist_main(request):
@@ -40,7 +41,7 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(redirect_to)
 
-class AddView(View):
+class AddReviewView(View):
     def post(self, request):
         if request.method == "POST":
             form = ReviewForm(request.POST)
@@ -63,13 +64,31 @@ class AddView(View):
         form = ReviewForm()
         return render(request, 'gamelist/add.html', {'form': form})
 
-class DefiniteGame(View):
+class ReviewView(DetailView):
+    model = GameReview
+    context_object_name = 'game'
+    template_name = 'gamelist/review.html'
+
+class SearchGameView(View):
     def get(self, request, id):
         game = GameReview.objects.get(id=id)
         current_user = request.user
         if request.user.is_authenticated and current_user.id == game.reviewer_id:
-            results = igdbapi_search('sonic dx')
-            # results =
-            return render(request, 'gamelist/game-definition.html', {'results': results})
+            results = igdbapi_search(game.title)
+            return render(request, 'gamelist/game-definition.html', {'results': results, 'game': game})
+        else:
+            return HttpResponseRedirect("/gamelist/nt")
+
+class DefiniteGameView(View):
+    def get(self, request, game_id, review_id):
+        review = GameReview.objects.get(id=review_id)
+        current_user = request.user
+        if request.user.is_authenticated and current_user.id == review.reviewer_id:
+            game_info = igdbapi_getinfo(game_id)
+            for game in game_info:
+                review.title = game['name']
+                review.game_url = game['url']
+                review.save()
+            return HttpResponseRedirect("/gamelist/" + str(review.id))
         else:
             return HttpResponseRedirect("/gamelist/nt")
