@@ -10,3 +10,4 @@ class GameReview(models.Model):
     likenumber = models.IntegerField(default=0)
     likedone = models.ManyToManyField(User, related_name='users_likes')
     date = models.DateTimeField(auto_now_add=True)
+    game_url = models.URLField(null=True)
