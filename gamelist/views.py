@@ -1,4 +1,4 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
@@ -13,8 +13,16 @@ from .models import GameReview
 from .game_info_request import igdbapi_search, igdbapi_getinfo
 
 
-def gamelist_main(request):
-    return render (request, 'gamelist/gamelist.html')
+class GameListView(ListView):
+    model = GameReview
+    context_object_name = 'reviews'
+    template_name = 'gamelist/gamelist.html'
+    queryset = GameReview.objects.filter(show_in_feed=True)
+
+class ReviewView(DetailView):
+    model = GameReview
+    context_object_name = 'game'
+    template_name = 'gamelist/review.html'
 
 class RegisterFormView(FormView):
     form_class = UserCreationForm
@@ -53,6 +61,11 @@ class AddReviewView(View):
                     game.rating = request.POST.get("rating")
                     if game.rating == None:
                         game.rating = 0
+                    game.show_in_feed = request.POST.get("feed")
+                    if game.show_in_feed == None:
+                        game.show_in_feed = False
+                    if game.show_in_feed == "on":
+                        game.show_in_feed = True
                     game.reviewer = request.user
                     game.save()
                     return HttpResponseRedirect("/gamelist/" + str(game.id) + "/definition")
@@ -63,11 +76,6 @@ class AddReviewView(View):
     def get(self, request):
         form = ReviewForm()
         return render(request, 'gamelist/add.html', {'form': form})
-
-class ReviewView(DetailView):
-    model = GameReview
-    context_object_name = 'game'
-    template_name = 'gamelist/review.html'
 
 class SearchGameView(View):
     def get(self, request, id):

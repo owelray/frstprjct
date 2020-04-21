@@ -33,6 +33,23 @@ html {
   overflow: auto;
 }
 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    /* background-color: #F5F5F5; */
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    /* background-color: #F5F5F5; */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #26739d;
+}
+
 html {
   scroll-behavior: smooth;
   background-image: radial-gradient(
@@ -69,7 +86,7 @@ p {
 .decoration-none {
   text-decoration: none;
 }
-.decoration-underline a{
+.decoration-underline a {
   text-decoration: underline;
 }
 .yellow {
@@ -110,6 +127,12 @@ h4 {
   font-size: 2.3472906403940885vw;
   transition: 0.2s ease-in;
 }
+h5 {
+  font-family: Gravity-Ultralight;
+  color: white;
+  font-size: 2.3em;
+  transition: 0.2s ease-in;
+}
 .btn h2:hover {
   background-color: white;
   border: 1px white solid;
@@ -127,7 +150,7 @@ i {
   transition: 0.1s linear;
 }
 label {
-  transition: 0.2s ease-in;
+  transition: 0.1s ease-in;
 }
 img {
   width: auto;
@@ -466,6 +489,7 @@ form {
 .title-input {
   width: 50vw;
   text-align: center;
+  position: relative;
 }
 .title-input input {
   display: block;
@@ -508,10 +532,13 @@ form {
   justify-content: center;
   display: flex;
   height: 4.5vmin;
+  position: relative;
+  margin-top: 15px;
 }
 input[type="submit"] {
   height: 100%;
-  width: 25%;
+  /* width: 25%; */
+  width: 15em;
   font-family: Gravity-Light;
   font-weight: 700;
   font-size: 1.6vw;
@@ -538,6 +565,45 @@ input[type="submit"]:hover {
 }
 .non-authorized h3 {
   padding-top: 2vh;
+}
+
+.feed-checkbox {
+  /* display: flex;
+  justify-content: center; */
+  position: relative;
+}
+.feed-checkbox > input {
+  display: none;
+}
+.feed-checkbox input[type="checkbox"] + label:before {
+  margin: 5px;
+  font-size: 1em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f0c8";
+}
+.off {
+  padding-left: 10px;
+}
+.feed-checkbox input[type="checkbox"] + label:hover {
+  color: aqua;
+}
+.feed-checkbox input[type="checkbox"]:checked + label:before {
+  font-size: 1em;
+  margin: 5px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f14a";
+  color: white;
+}
+/* .feed-text {
+  position: absolute;
+  right: -110%;
+  bottom: 0;
+} */
+.relative {
+  position: relative;
+  display: flex;
 }
 /* end add.html */
 

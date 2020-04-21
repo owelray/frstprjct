@@ -90,12 +90,17 @@
           <input type="radio" id="star0" name="rating" data-score="0" value="0"> <label class="reset-rate full" data-score="0" for="star0"></label>
         </div>
         <div class="result">
-              <h2 id="result">
-              </h2>
-          </div>
+            <h2 id="result">
+            </h2>
+        </div>
+        <div class="feed-checkbox">
+          <label class="text">Show this review in feed</label>
+          <input type="checkbox" id="checkbox-feed" name="feed">
+          <label class="off" for="checkbox-feed"></label>
+        </div>
     </div>
     <div class="publish-button">
-      <input type="submit" value="Publish">
+          <input type="submit" value="Publish">
     </div>
   </form>
 </div>
@@ -107,11 +112,11 @@
 {% endif %}
 {% endblock content %}
 {% block footer %}
-{#    <div class="footer">#}
-{#        <div class="footer-links">#}
-{#            <a href="#"><i class="fab fa-github"></i></a>#}
-{#        </div>#}
-{#    </div>#}
+<div class="footer">
+  <div class="footer-links">
+      <a href="#"><i class="icon-github"></i></a>	
+  </div>
+</div>
 {% endblock %}
 {% block scripts %}
   <script src="/static/js/script.js"></script>

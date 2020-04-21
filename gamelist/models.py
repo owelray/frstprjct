@@ -11,3 +11,4 @@ class GameReview(models.Model):
     likedone = models.ManyToManyField(User, related_name='users_likes')
     date = models.DateTimeField(auto_now_add=True)
     game_url = models.URLField(null=True)
+    show_in_feed = models.BooleanField(default=False)
