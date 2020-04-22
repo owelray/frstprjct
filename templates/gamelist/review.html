@@ -23,7 +23,7 @@
     </div>
 {#    <h3>{{ game }}</h3>#}
     <div class="decoration-underline">
-        <h4>Published in {{ game.date }} by <a href="/gamelist/user/{{ game.reviewer_id }}">{{ game.reviewer }}</a>
+        <h4>Published in {{ game.date }} by <a href="/gamelist/user/{{ game.reviewer }}">{{ game.reviewer }}</a>
         </h4>
     </div>
 </div>
@@ -36,7 +36,7 @@
         <h3>  
             {{ game.rating|floatformat }}/10 <i class="fas fa-star yellow"></i>
             {% if user.id == game.reviewer_id %}
-            <h3 class="right_buttons">(<a href="#">Edit</a>)   (<a href="#">Delete</a>)</h3>
+            <h3 class="right_buttons">(<a href="#">Edit</a>)   (<a href="/gamelist/delete/{{ game.id }}">Delete</a>)</h3>
             {% endif %}
         </h3>
     </div>

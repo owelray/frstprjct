@@ -2,7 +2,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.views.generic.base import View
 from django.contrib.auth import logout
@@ -36,7 +36,7 @@ class RegisterFormView(FormView):
 class LoginFormView(FormView):
     form_class = AuthenticationForm
     template_name = "gamelist/login.html"
-    success_url = '/gamelist/'
+    success_url = "/gamelist"
 
     def form_valid(self, form):
         self.user = form.get_user()
@@ -68,7 +68,7 @@ class AddReviewView(View):
                         game.show_in_feed = True
                     game.reviewer = request.user
                     game.save()
-                    return HttpResponseRedirect("/gamelist/" + str(game.id) + "/definition")
+                    return HttpResponseRedirect("/gamelist/" + "definition/" + str(game.id))
                 else:
                     return HttpResponseRedirect('/gamelist/nt')
             else:
@@ -82,6 +82,7 @@ class SearchGameView(View):
         game = GameReview.objects.get(id=id)
         current_user = request.user
         if request.user.is_authenticated and current_user.id == game.reviewer_id:
+            print(game.title)
             results = igdbapi_search(game.title)
             return render(request, 'gamelist/game-definition.html', {'results': results, 'game': game})
         else:
@@ -98,5 +99,15 @@ class DefiniteGameView(View):
                 review.game_url = game['url']
                 review.save()
             return HttpResponseRedirect("/gamelist/" + str(review.id))
+        else:
+            return HttpResponseRedirect("/gamelist/nt")
+
+class DeleteGameReviewView(View):
+    def get(self, request, review_id):
+        review = GameReview.objects.get(id=review_id)
+        current_user = request.user
+        if request.user.is_authenticated and current_user.id == review.reviewer_id:
+            review.delete()
+            return HttpResponseRedirect('/gamelist/user/' + str(current_user.username))
         else:
             return HttpResponseRedirect("/gamelist/nt")
