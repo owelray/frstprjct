@@ -1,0 +1,137 @@
+{% extends "gamelist/wrapper.html" %}
+{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Review</title>
+{% endblock %}
+{% block navbar %}
+<div class="header">
+  <ul>
+    <li class="homebutton">
+      <a href="/gamelist"></a>
+    </li>
+    <li class="returnbutton btn">
+      <a href="/">
+        <p>Return to portfolio</p>
+      </a>
+    </li>
+    {% if user.is_authenticated %}
+    <li class="title">
+      <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
+    </li>
+    <li class="logout btn padding-logout">
+      <a href="/gamelist/logout?next=/gamelist/">
+        <h2>LogOut</h2>
+      </a>
+    </li>
+    {% else %}
+    <li class="title btn padding-title">
+      <h1>GameList</h1>
+    </li>
+    <li class="register btn">
+      <a href="/gamelist/register?next={{ request.path }}">
+        <h2>SignUp</h2>
+      </a>
+    </li>
+    <li class="login btn">
+      <a href="/gamelist/login?next={{ request.path }}">
+        <h2>SignIn</h2>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock navbar %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="review-form">
+  <form method="POST" name="add_form">
+    {% csrf_token %}
+    <div class="inputs">
+      <div class="title-input">
+        <label> Title of the game <br>
+          {{ form.title }}
+        </label>
+      </div>
+    </div>
+    <div class="review-input">
+      <label> Review
+        {{ form.review }}
+      <small id="counter" class="counter"></small>
+      </label>
+    </div>
+    <div class="game-rate">
+        <label>Rate this game</label>
+        <input type="hidden" class="hidden_value" value="{{ review.rating|floatformat }}" id="rating_hidden_value">
+        <input type="hidden" class="hidden_value" value="{{ review.show_in_feed }}" id="feed_hidden_value">
+        <div class="rating" id="rate">
+          <input type="radio" id="star10"  data-score="10" name="rating" value="10" /><label class ="full" data-score="10" for="star10"></label>
+          <input type="radio" id="star9half" data-score="9.5" name="rating" value="9.5" /><label class="half" data-score="9.5" for="star9half"></label>
+          <input type="radio" id="star9" data-score="9" name="rating" value="9" /><label class ="full" data-score="9" for="star9"></label>
+          <input type="radio" id="star8half" data-score="8.5" name="rating" value="8.5" /><label class="half" data-score="8.5" for="star8half"></label>
+          <input type="radio" id="star8" data-score="8" name="rating" value="8" /><label class ="full" data-score="8" for="star8"></label>
+          <input type="radio" id="star7half" data-score="7.5" name="rating" value="7.5" /><label class="half" data-score="7.5" for="star7half"></label>
+          <input type="radio" id="star7" data-score="7" name="rating" value="7" /><label class ="full" data-score="7" for="star7"></label>
+          <input type="radio" id="star6half" data-score="6.5" name="rating" value="6.5" /><label class="half" data-score="6.5" for="star6half"></label>
+          <input type="radio" id="star6" data-score="6" name="rating" value="6" /><label class ="full" data-score="6" for="star6"></label>
+          <input type="radio" id="star5half" data-score="5.5" name="rating" value="5.5" /><label class="half" data-score="5.5" for="star5half"></label>
+          <input type="radio" id="star5" data-score="5" name="rating" value="5" /><label class ="full" data-score="5" for="star5"></label>
+          <input type="radio" id="star4half" data-score="4.5" name="rating" value="4.5" /><label class="half" data-score="4.5" for="star4half"></label>
+          <input type="radio" id="star4" data-score="4" name="rating" value="4" /><label class ="full" data-score="4" for="star4"></label>
+          <input type="radio" id="star3half" data-score="3.5" name="rating" value="3.5" /><label class="half" data-score="3.5" for="star3half"></label>
+          <input type="radio" id="star3" data-score="3" name="rating" value="3" /><label class ="full" data-score="3" for="star3"></label>
+          <input type="radio" id="star2half" data-score="2.5" name="rating" value="2.5" /><label class="half" data-score="2.5" for="star2half"></label>
+          <input type="radio" id="star2" data-score="2" name="rating" value="2" /><label class ="full" data-score="2" for="star2"></label>
+          <input type="radio" id="star1half" data-score="1.5" name="rating" value="1.5" /><label class="half" data-score="1.5" for="star1half"></label>
+          <input type="radio" id="star1" data-score="1" name="rating" value="1" /><label class ="full" data-score="1" for="star1"></label>
+          <input type="radio" id="star0half" data-score="0.5" name="rating" value="0.5" /><label class="half" data-score="0.5" for="starhalf"></label>
+          <input type="radio" id="star0" name="rating" data-score="0" value="0"> <label class="reset-rate full" data-score="0" for="star0"></label>
+        </div>
+        <div class="result">
+            <h2 id="result"></h2>
+        </div>
+        <div class="feed-checkbox">
+          <label class="text">Show this review in feed</label>
+          <input type="checkbox" id="checkbox-feed" name="feed">
+          <label class="off" for="checkbox-feed"></label>
+        </div>
+    </div>
+    <div class="publish-button">
+          <input type="submit" value="Publish">
+    </div>
+  </form>
+</div>
+{% else %}
+    <div class="non-authorized">
+        <h1>You have to authorize</h1>
+        <h3><a href="/gamelist/login?next={{ request.path }}">Sign In</a></h3>
+    </div>
+{% endif %}
+{% endblock content %}
+{% block footer %}
+<div class="footer">
+  <div class="footer-links">
+      <a href="#"><i class="github"></i></a>	
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+  <script src="/static/js/script.js"></script>
+  <script>
+    var rate_value = document.getElementById('rating_hidden_value');
+    var show_in_feed_value = document.getElementById("feed_hidden_value");
+    show_in_feed_value = show_in_feed_value.value
+    var right_star, right_show_in_feed
+    if (rate_value.value % 1 == 0) {
+      right_star = document.getElementById('star' + rate_value.value) 
+    } else {
+      right_star = document.getElementById('star' + Math.floor(rate_value.value) + 'half')
+    }
+    right_star.checked = true
+    if (show_in_feed_value == "False") {
+      document.getElementById("checkbox-feed").checked = false
+    } else {
+      document.getElementById("checkbox-feed").checked = true
+    }
+  </script> 
+{% endblock %}
