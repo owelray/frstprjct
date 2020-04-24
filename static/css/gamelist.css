@@ -1,4 +1,4 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
 @font-face {
   font-family: "Gravity-Regular";
   src: url("../fonts/Gravity-Regular.otf") format("truetype");
@@ -34,20 +34,20 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    /* background-color: #F5F5F5; */
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  /* background-color: #F5F5F5; */
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
-    /* background-color: #F5F5F5; */
+  width: 12px;
+  /* background-color: #F5F5F5; */
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #26739d;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #26739d;
 }
 
 html {
@@ -374,7 +374,7 @@ li {
   font-family: Gravity-Ultralight;
   font-size: 2.3vh;
 }
-.book-title {
+.review-title {
   word-wrap: break-word;
   max-height: 9.1vh;
   display: -webkit-box;
@@ -383,12 +383,12 @@ li {
   overflow: hidden;
   text-align: center;
 }
-.book-title h1:hover {
+.review-title h1:hover {
   color: gold;
   text-decoration: none;
   transition: all 0.2s linear;
 }
-.book-author {
+.review-rating {
   word-wrap: break-word;
 }
 .rate {
@@ -659,6 +659,7 @@ input[type="submit"]:hover {
   font-size: 2.7914614121510675vw;
   color: white;
   justify-content: center;
+  text-align: center;
 }
 .auth form {
   font-family: Gravity-Regular;
@@ -713,7 +714,7 @@ button[type="submit"]:hover {
   transition: 0.1s linear;
 }
 .errorlist {
-  text-align: start;
+  text-align: center;
   font-size: 1.6420361247947455vw;
   color: black;
 }
@@ -742,12 +743,12 @@ button[type="submit"]:hover {
 .rating > input {
   display: none;
 }
-.rating > label:before {
+.rating > .full:before {
   margin: 5px;
   font-size: 1.05em;
-  font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
+  font-family: FontAwesome;
 }
 .reset-rate {
   opacity: 0;
@@ -755,15 +756,25 @@ button[type="submit"]:hover {
   left: -1em;
 }
 .rating > .half:before {
+  margin: 5px;
   content: "\f089";
   position: absolute;
+  font-family: FontAwesome;
+}
+
+.github:before {
+  font-family: FontAwesome;
+  font-style: normal;
+  content: "\f09b";
 }
 
 .rating > label {
   color: #ddd;
   float: right;
 }
-
+.hidden_value {
+  display: none;
+}
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
 .rating:not(:checked) > label:hover ~ label {
@@ -785,6 +796,7 @@ button[type="submit"]:hover {
   justify-content: center;
   align-items: flex-start;
   align-self: flex-start;
+  text-align: center;
 }
 
 .search-result {

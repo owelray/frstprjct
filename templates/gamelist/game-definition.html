@@ -12,6 +12,7 @@
 {% block content %}
   <div class="main">
     <div class="search-list">
+      {% if results|length > 0 %}
       {% for result in results %}
         {% if result.name|length > 0 %}
         <div class="search-result">
@@ -53,18 +54,21 @@
             </a>
           </div>
           <div class="choose-button">
-            <a href="/gamelist/{{ game.id }}/definition/{{ result.id }}">
+            <a href="/gamelist/definition/{{ game.id }}/{{ result.id }}">
               <h2>Choose</h2>
             </a>
           </div>
         </div>
         {% endif %}
       {% endfor %}
+      {% else %}
+        <h1>game with a title <br>"{{ game.title }}"<br> is not found</h1>
+      {% endif %}
     </div>
     <div class="alternate-method">
       <h1>Did not find the game you need?</h1>
-      <h2>You can try to specify the name of the game more accurately <a href='/gamelist/{{ game.id }}/rename'>here</a>.<br>
-          Or you can <a href='/gamelist/{{ game.id }}'>leave the name of the game as it was</a>.
+      <h2>You can try to specify the name of the game more accurately <a href='/gamelist/edit/{{ game.id }}'>here</a>.<br>
+          Or you can <a href='/gamelist/review/{{ game.id }}'>leave the name of the game as it was</a>.
       </h2>
     </div>
   </div>

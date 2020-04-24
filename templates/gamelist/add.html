@@ -2,7 +2,7 @@
 {% block head %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Review</title>
+  <title>Add Review</title>
 {% endblock %}
 {% block navbar %}
 <div class="header">
@@ -17,7 +17,7 @@
     </li>
     {% if user.is_authenticated %}
     <li class="title">
-      <h1><a href="/gamelist/user/{{ user.id }}">My profile</a></h1>
+      <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
     </li>
     <li class="logout btn padding-logout">
       <a href="/gamelist/logout?next=/gamelist/">
@@ -26,7 +26,7 @@
     </li>
     {% else %}
     <li class="title btn padding-title">
-      <h1>Library</h1>
+      <h1>GameList</h1>
     </li>
     <li class="register btn">
       <a href="/gamelist/register?next={{ request.path }}">
@@ -51,16 +51,12 @@
       <div class="title-input">
         <label> Title of the game <br>
           {{ form.title }}
-          {#          <input type="text" name="title" value="{{ book.title }}" autocomplete="off"#}
-          {#            placeholder="Enter the title of the book (60 symbols max)" required maxlength="60" contenteditable="true">#}
         </label>
       </div>
     </div>
     <div class="review-input">
       <label> Review
         {{ form.review }}
-{#                <textarea type="text" name="review" value="{{ book.review }}" autocomplete="off"#}
-{#                  placeholder="Write your review (250 symbols max)" required maxlength="250"></textarea>#}
       <small id="counter" class="counter"></small>
       </label>
     </div>
@@ -90,8 +86,7 @@
           <input type="radio" id="star0" name="rating" data-score="0" value="0"> <label class="reset-rate full" data-score="0" for="star0"></label>
         </div>
         <div class="result">
-            <h2 id="result">
-            </h2>
+            <h2 id="result"></h2>
         </div>
         <div class="feed-checkbox">
           <label class="text">Show this review in feed</label>
@@ -114,7 +109,7 @@
 {% block footer %}
 <div class="footer">
   <div class="footer-links">
-      <a href="#"><i class="icon-github"></i></a>	
+      <a href="#"><i class="github"></i></a>	
   </div>
 </div>
 {% endblock %}

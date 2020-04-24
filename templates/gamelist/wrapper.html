@@ -2,14 +2,15 @@
 {% load static %}
 <html lang="en">
 <link rel="stylesheet" href="{% static "/css/gamelist.css" %}">
-{% block head %}
+
 <head>
+{% block head %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>GameList</title>
   <script src="https://kit.fontawesome.com/71a235d8ae.js" crossorigin="anonymous"></script>
-</head>
 {% endblock%}
+</head>
 
 <body>
   <div class="wrapper">
@@ -26,7 +27,7 @@
         </li>
         {% if user.is_authenticated %}
         <li class="title btn">
-          <h1><a href="/gamelist/user/{{ user.id }}">My profile</a></h1>
+          <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
         </li>
         <li class="add-game btn">
           <a href="/gamelist/add">
