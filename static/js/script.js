@@ -59,3 +59,4 @@ function calcChars() {
   counter.style.color = left <= 10 ? "#ff3300" : "#67f4fe";
   counter.textContent = max - this.value.length;
 }
+
