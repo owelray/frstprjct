@@ -382,7 +382,7 @@ li {
   overflow: hidden;
   text-align: center;
 }
-.review-title h1:hover {
+.review-title a:hover {
   color: gold;
   text-decoration: none;
   transition: all 0.2s linear;
@@ -409,7 +409,7 @@ li {
   text-align: right;
   /* height: 50px; */
 }
-.reviewer h2:hover {
+.reviewer a:hover {
   color: gold;
   transition: all 0.1s linear;
 }

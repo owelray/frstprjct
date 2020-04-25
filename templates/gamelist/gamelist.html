@@ -15,9 +15,7 @@
     {% for review in reviews %}
     <div class="review" id="{{ review.id }}">
       <div class="review-title">
-        <a href="/gamelist/review/{{ review.id }}/">
-          <h1>{{ review.title }}</h1>
-        </a>
+        <h1><a href="/gamelist/review/{{ review.id }}/">{{ review.title }}</a></h1>
       </div>
       <div class="review-rating">
         <h2>
@@ -43,9 +41,7 @@
         </h2>
       </div>
       <div class="reviewer">
-        <a href="{{ review.reviewer }}">
-          <h2>{{ review.reviewer }}</h2>
-        </a>
+        <h2><a href="{{ review.reviewer }}">{{ review.reviewer }}</a></h2>
       </div>
     </div>
     {% endfor %}
