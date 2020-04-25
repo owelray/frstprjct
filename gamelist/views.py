@@ -36,6 +36,7 @@ class ProfileView(View):
         except User.DoesNotExist:
             return HttpResponseNotFound('<h2>User not found</h2>')
 
+#For the future
 class IDProfileView(View):
     def get(self, requets, user_id):
         try:
@@ -111,6 +112,7 @@ class SearchGameView(View):
             current_user = request.user
             if request.user.is_authenticated and current_user.id == game.reviewer_id:
                 try:
+                    #gets a json search_data and sorting it | more info in game_info_request.py
                     results = igdbapi_search(game.title)
                     return render(request, 'gamelist/game-definition.html', {'results': results, 'game': game})
                 except:
@@ -126,6 +128,7 @@ class DefiniteGameView(View):
             review = GameReview.objects.get(id=review_id)
             current_user = request.user
             if request.user.is_authenticated and current_user.id == review.reviewer_id:
+                #gets a json game_info_data
                 game_info = igdbapi_getinfo(game_id)
                 for game in game_info:
                     review.title = game['name']

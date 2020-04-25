@@ -12,9 +12,11 @@ def igdbapi_search(game_title):
         )
     json_api_data = json.loads(byte_array)
     genres_list = []
+    #Checking for emptiness
     if not json_api_data:
         return json_api_data
     else:
+        #Checking for useless results
         for result in json_api_data:
             if "Collector's Edition" in result['name']:
                 result.clear()
@@ -26,18 +28,22 @@ def igdbapi_search(game_title):
                         result.clear()
                     else:
                         if 'first_release_date' in result:
+                            #formatting date from unix to default format
                             formated_date = datetime.fromtimestamp(result['first_release_date']).strftime("%d-%m-%Y")
                             result['first_release_date'] = formated_date
                         if 'genres' in result:
+                            #adding genres to the list
                             genres_list.append(result['genres'])
         merged_genres_list = []
         for list in genres_list:
             merged_genres_list.extend(list)
+        #initially the request gives me only an id of genres, so i have to make another request to find out the names
         byte_array = wrapper.api_request(
             'genres',
             'fields name; where id = ('+ ','.join(map(str, merged_genres_list)) +');'
             )
         json_api_genres = json.loads(byte_array)
+        #replacing id to names of genres
         for result in json_api_data:
             if 'genres' in result:
                 counter = 0
@@ -47,6 +53,7 @@ def igdbapi_search(game_title):
                             result['genres'][counter] = genre_name['name']
                             counter += 1
                 result['genres'] = ', '.join(map(str, result['genres']))
+            #if the game is blank
             if 'genres' and 'first_release_date' not in result:
                 result.clear()
         return json_api_data
