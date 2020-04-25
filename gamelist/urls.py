@@ -10,6 +10,7 @@ urlpatterns = [
         path('edit/<int:review_id>', views.EditGameReviewView.as_view()),
         path('delete/<int:review_id>/', views.DeleteGameReviewView.as_view()),
         path('review/<int:pk>/', views.ReviewView.as_view()),
+        path('nt/nt', views.SecretView.as_view()),
         path('definition/<int:id>/', views.SearchGameView.as_view()),
         path('definition/<int:review_id>/<int:game_id>/', views.DefiniteGameView.as_view()),
         path('rate/<int:add_id>', views.LikeView.as_view()),

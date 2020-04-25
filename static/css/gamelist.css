@@ -1,4 +1,3 @@
-@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
 @font-face {
   font-family: "Gravity-Regular";
   src: url("../fonts/Gravity-Regular.otf") format("truetype");
@@ -660,6 +659,13 @@ input[type="submit"]:hover {
   color: white;
   justify-content: center;
   text-align: center;
+}
+.auth a {
+  text-decoration: underline;
+  transition: 0.1s linear;
+}
+.auth a:hover {
+  color: yellow;
 }
 .auth form {
   font-family: Gravity-Regular;

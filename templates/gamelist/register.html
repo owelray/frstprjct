@@ -1,6 +1,10 @@
 {% extends "gamelist/wrapper.html" %}
 {% block content %}
     <div class="auth flex-grow1">
+    {% if user.is_authenticated %}
+    <h1>You are already authorized</h1>
+    <h2>If you want to register a new account you should try to <a href="/gamelist/logout?next={{ request.path }}">logout</a>  first</h2>
+    {% else %}
     <form action="" method="POST" autocomplete="off">
         {% csrf_token %}
         {% for field in form %}
@@ -12,6 +16,7 @@
         {% endfor %}
         <button type="submit">Sign Up</button>
     </form>
+    {% endif %}
     </div>
 {% endblock%}
 {% block footer %}
