@@ -25,9 +25,7 @@
             {% for review in reviews %}
                 <div class="review" id="{{ review.id }}">
                     <div class="review-title">
-                        <a href="/gamelist/review/{{ review.id }}">
-                            <h1>{{ review.title }}</h1>
-                        </a>
+                        <h1><a href="/gamelist/review/{{ review.id }}">{{ review.title }}</a></h1>
                     </div>
                     <div class="review-rating">
                         <h2>
@@ -53,9 +51,7 @@
                         </h2>
                     </div>
                     <div class="reviewer">
-                        <a href="/gamelist/{{ userinfo }}">
-                            <h2>{{ review.reviewer }}</h2>
-                        </a>
+                        <h2><a href="/gamelist/{{ userinfo }}">{{ review.reviewer }}</a></h2>
                     </div>
                 </div>
             {% endfor %}
@@ -73,9 +69,7 @@
                 {% for like in likes %}
                 <div class="review" id="{{ like.id }}">
                     <div class="review-title">
-                        <a href="/gamelist/review/{{ like.id }}">
-                            <h1>{{ like.title }}</h1>
-                        </a>
+                        <h1><a href="/gamelist/review/{{ like.id }}">{{ like.title }}</a></h1>
                     </div>
                     <div class="review-rating">
                         <h2>
@@ -101,9 +95,7 @@
                         </h2>
                     </div>
                     <div class="reviewer">
-                        <a href="/gamelist/{{ like.reviewer }}">
-                            <h2>{{ like.reviewer }}</h2>
-                        </a>
+                        <h2><a href="/gamelist/{{ like.reviewer }}">{{ like.reviewer }}</a></h2>
                     </div>
                 </div>
             {% endfor %}

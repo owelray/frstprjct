@@ -1,4 +1,9 @@
 {% extends "gamelist/wrapper.html" %}
+{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameList</title>
+{% endblock %}
 {% block navbar %}
 {% endblock navbar %}
 
@@ -18,9 +23,7 @@
         <div class="search-result">
           <div class="game-title">
             {% if result.name|length > 0 %}
-              <a href="{{ result.url }}" target="_blank">
-                <h1>{{ result.name }}</h1>
-              </a>
+            <h1><a href="{{ result.url }}" target="_blank">{{ result.name }}</a></h1>
             {% endif %}
           </div>
           <div class="game-release">
@@ -49,14 +52,10 @@
             </p>
           </div>
           <div class="see-more">
-            <a href="{{ result.url }}" target="_blank">
-              <h2 class="more-button">See more</h2>
-            </a>
+            <h2 class="more-button"><a href="{{ result.url }}" target="_blank">See more</a></h2>
           </div>
           <div class="choose-button">
-            <a href="/gamelist/definition/{{ game.id }}/{{ result.id }}">
-              <h2>Choose</h2>
-            </a>
+            <h2><a href="/gamelist/definition/{{ game.id }}/{{ result.id }}">Choose</a></h2>
           </div>
         </div>
         {% endif %}
