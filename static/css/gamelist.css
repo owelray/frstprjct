@@ -830,7 +830,7 @@ button[type="submit"]:hover {
   font-style: normal;
   transition: 0.2s ease;
 }
-.search-result h1:hover {
+.search-result a:hover {
   color: rgb(231, 235, 30);
 }
 .search-result h2 {
@@ -878,7 +878,7 @@ button[type="submit"]:hover {
   transition: 0.2s ease;
   text-decoration: underline;
 }
-.see-more h2:hover {
+.see-more a:hover {
   color: rgb(231, 235, 30);
 }
 
@@ -890,7 +890,7 @@ button[type="submit"]:hover {
   transition: 0.2s ease;
   text-decoration: underline;
 }
-.choose-button h2:hover {
+.choose-button a:hover {
   color: rgb(231, 235, 30);
 }
 
@@ -905,3 +905,112 @@ button[type="submit"]:hover {
 }
 
 /* end game-definition.html */
+
+/* media */
+@media (min-width: 3000px) and (min-height: 1000px) and (max-height: 1330px) {
+  .add-game {
+    padding: 0;
+  }
+  .description {
+    padding-top: 1vh;
+  }
+  .padding-logout {
+    flex-grow: 0;
+    padding-right: 2vh;
+  }
+  .padding-title-hi h1 {
+    padding-right: 390px;
+  }
+  .review-form input[type="text"] {
+    height: 150px;
+  }
+  .review-input textarea {
+    height: auto;
+  }
+  .publish-button {
+    height: auto;
+  }
+  .auth input[type="text"],
+  input[type="password"] {
+    height: 100px;
+    font-size: 50px;
+    border-radius: 45px;
+  }
+  button[type="submit"] {
+    height: 85px;
+    font-size: 55px;
+    border-radius: 45px;
+  }
+  .text p {
+    font-size: 80px
+  }
+}
+@media (max-width: 777px) {
+  .login {
+    padding-right: 30px;
+  }
+  body,
+  html {
+    scrollbar-width: none;
+    overflow: overlay;
+  }
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+  .review-form textarea {
+    border-radius: 15px;
+  }
+}
+@media (max-width: 555px) {
+  .padding-title {
+    padding-right: 15px;
+  }
+  .description {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+  .footer-links {
+    width: 45%;
+  }
+  .footer i {
+    font-size: 35px;
+  }
+}
+@media (max-width: 350px) {
+  .returnbutton {
+    padding-left: 10px;
+  }
+  p {
+    font-size: 7px;
+  }
+  .login {
+    padding-right: 15px;
+  }
+  button[type="submit"] {
+    height: 30px;
+  }
+  .feed-checkbox input[type="checkbox"] + label:before {
+    margin: 0;
+  }
+  .feed-checkbox label {
+    font-size: 20px;
+  }
+  .off {
+    padding-left: 0;
+  }
+  .padding-title {
+    padding-right: 15px;
+  }
+  .description {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+  .footer-links {
+    width: 45%;
+  }
+  .footer i {
+    font-size: 35px;
+  }
+}
+
+/* end media */
