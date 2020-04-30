@@ -10,10 +10,19 @@
 </div>
 {% endblock description %}
 {% block content %}
+<div class="sort">
+  <h2 class="padding-right15px">Sort by: </h2>
+  <div class="sorting-categories">
+    <h2 class="padding-right15px"><a onclick="sortlist('--');" class="choosed sorting-buttons" id="2">Newest</a></h2>
+    <h2 class="padding-right15px"><a onclick="sortlist('----');" class="sorting-buttons" id="4">Oldest</a></h2>
+    <h2 class="padding-right15px"><a onclick="sortlist('-');" class="sorting-buttons" id='1'>Most Liked</a></h2>
+    <h2><a onclick="sortlist('---');" class="sorting-buttons" id="3">High Rated</a></h2>
+  </div>
+</div>
 <div class="main">
-  <div class="review-list">
+  <div class="review-list" id="list">
     {% for review in reviews %}
-    <div class="review" id="{{ review.id }}">
+    <div class="review" id="likes-{{ review.likenumber }}-date--{{ review.date|date:"U" }}--rating---{{ review.rating|floatformat }}---date----{{ review.date|date:"U" }}">
       <div class="review-title">
         <h1><a href="/gamelist/review/{{ review.id }}/">{{ review.title }}</a></h1>
       </div>
@@ -58,3 +67,6 @@
     </div>
 </div>
 {% endblock footer %}
+{% block scripts %}
+  <script src="/static/js/sort.js"></script>
+{% endblock %}

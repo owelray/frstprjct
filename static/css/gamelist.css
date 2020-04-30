@@ -172,6 +172,9 @@ img {
 .padding-top {
   padding-top: 23px;
 }
+.padding-right15px {
+  padding-right: 15px;
+}
 .justify-center {
   justify-content: center;
 }
@@ -220,6 +223,30 @@ img {
   flex-grow: 1;
   justify-content: center;
 }
+.sort {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+.sorting-categories {
+  display: flex;
+  justify-content: space-between;
+}
+.sort h2 {
+  font-size: min(2.6vw, 50px);
+}
+.sorting-categories a {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.sorting-categories a:hover {
+  color: yellow;
+  text-decoration: underline;
+}
+.choosed {
+  text-decoration: underline;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -633,7 +660,8 @@ input[type="submit"]:hover {
   position: relative;
 }
 .text p {
-  font-size: 3.1297208538587844vw;
+  font-size: min(2.6vw, 50px);
+  /* 3.1297208538587844vw; */
 }
 
 .right_buttons {
@@ -942,7 +970,12 @@ button[type="submit"]:hover {
     border-radius: 45px;
   }
   .text p {
-    font-size: 80px
+    font-size: 80px;
+  }
+}
+@media (min-width: 1919px) and (min-height: 1080px) {
+  button[type="submit"] {
+    font-size: 1.570443vw;
   }
 }
 @media (max-width: 777px) {
