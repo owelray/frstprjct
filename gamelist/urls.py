@@ -15,5 +15,5 @@ urlpatterns = [
         path('definition/<int:review_id>/<int:game_id>/', views.DefiniteGameView.as_view()),
         path('rate/<int:add_id>', views.LikeView.as_view()),
         path('id/<int:user_id>', views.IDProfileView.as_view()),
-        path('<user_name>/', views.ProfileView.as_view()),
+        path('user/<user_name>/', views.ProfileView.as_view()),
 ]
