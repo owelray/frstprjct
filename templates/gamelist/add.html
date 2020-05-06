@@ -20,7 +20,7 @@
     </li>
     {% if user.is_authenticated %}
     <li class="title padding-title-hi">
-      <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
+      <h1><a href="/gamelist/user/{{ user }}">My profile</a></h1>
     </li>
     <li class="logout btn padding-logout">
       <a href="/gamelist/logout?next=/gamelist/">
@@ -55,6 +55,12 @@
         <label> Title of the game <br>
           {{ form.title }}
         </label>
+        <div class="search" id="search">
+          <div class="arrow_box">
+            <div class="results">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="review-input">
@@ -112,10 +118,12 @@
 {% block footer %}
 <div class="footer">
   <div class="footer-links">
-      <a href="#"><i class="github"></i></a>	
+      <a href="https://github.com/owelray/frstprjct/blob/master/gamelist/views.py#L91" target="_blank"><i class="github"></i></a>
   </div>
 </div>
 {% endblock %}
 {% block scripts %}
   <script src="/static/js/script.js"></script>
+  <script src="/static/js/jquery-3.5.1.js"></script>
+  <script src="/static/js/ajax_search.js"></script>
 {% endblock %}

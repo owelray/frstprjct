@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.urls import path
 from . import views
 
@@ -16,4 +17,5 @@ urlpatterns = [
         path('rate/<int:add_id>', views.LikeView.as_view()),
         path('id/<int:user_id>', views.IDProfileView.as_view()),
         path('user/<user_name>/', views.ProfileView.as_view()),
+        url(r'^ajax/search/$', views.Ajax_Search.as_view()),
 ]
