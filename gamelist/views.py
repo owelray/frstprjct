@@ -3,7 +3,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse, Http404
 from django.views.generic.base import View
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
@@ -36,7 +36,7 @@ class IDProfileView(View):
     def get(self, user_id):
         try:
             userinfo = User.objects.get(id=user_id)
-            return HttpResponseRedirect('/gamelist/' + str(userinfo.username))
+            return HttpResponseRedirect('/gamelist/user/' + str(userinfo.username))
         except User.DoesNotExist:
             return HttpResponseNotFound('<h2>User not found</h2>')
 
@@ -96,6 +96,10 @@ class AddReviewView(View):
                 if request.user.is_authenticated:
                     game = GameReview()
                     game.title = request.POST.get("title")
+                    if request.POST.get("game_api_id") != "":
+                        # gets the new url of the game
+                        game_api_info = igdbapi_getinfo(request.POST.get("game_api_id"))
+                        game.game_url = game_api_info[0]["url"]
                     game.review = request.POST.get("review")
                     game.rating = request.POST.get("rating")
                     if game.rating == None:
@@ -104,7 +108,7 @@ class AddReviewView(View):
                     game.show_in_feed = validate_form_checkbox(game.show_in_feed)
                     game.reviewer = request.user
                     game.save()
-                    return HttpResponseRedirect("/gamelist/definition/" + str(game.id))
+                    return HttpResponseRedirect("/gamelist/review/" + str(game.id))
                 else:
                     return HttpResponseRedirect('/gamelist/nt/nt')
             else:
@@ -113,57 +117,6 @@ class AddReviewView(View):
     def get(self, request):
         form = ReviewForm()
         return render(request, 'gamelist/add.html', {'form': form})
-
-
-class SearchGameView(View):
-    def get(self, request, id):
-        try:
-            game = GameReview.objects.get(id=id)
-            current_user = request.user
-            if request.user.is_authenticated and current_user.id == game.reviewer_id:
-                try:
-                    # gets a json search_data and sorting it | more info in game_info_request.py
-                    results = igdbapi_search(game.title)
-                    return render(request, 'gamelist/game-definition.html', {'results': results, 'game': game})
-                except:
-                    return render(request, 'gamelist/game-definition.html', {'game': game})
-            else:
-                return HttpResponseRedirect("/gamelist/nt/nt")
-        except GameReview.DoesNotExist:
-            return HttpResponseNotFound('<h2>Review not found</h2>')
-
-
-class DefiniteGameView(View):
-    def get(self, request, game_id, review_id):
-        try:
-            review = GameReview.objects.get(id=review_id)
-            current_user = request.user
-            if request.user.is_authenticated and current_user.id == review.reviewer_id:
-                # gets a json game_info_data
-                game_info = igdbapi_getinfo(game_id)
-                for game in game_info:
-                    review.title = game['name']
-                    review.game_url = game['url']
-                    review.save()
-                return HttpResponseRedirect("/gamelist/review/" + str(review.id))
-            else:
-                return HttpResponseRedirect("/gamelist/nt/nt")
-        except GameReview.DoesNotExist:
-            return HttpResponseNotFound('<h2>Review not found</h2>')
-
-
-class DeleteGameReviewView(View):
-    def get(self, request, review_id):
-        try:
-            review = GameReview.objects.get(id=review_id)
-            current_user = request.user
-            if request.user.is_authenticated and current_user.id == review.reviewer_id:
-                review.delete()
-                return HttpResponseRedirect('/gamelist/' + str(current_user.username))
-            else:
-                return HttpResponseRedirect("/gamelist/nt/nt")
-        except GameReview.DoesNotExist:
-            return HttpResponseNotFound('<h2>Review not found</h2>')
 
 
 class EditGameReviewView(View):
@@ -188,10 +141,14 @@ class EditGameReviewView(View):
                 current_user = request.user
                 if form.is_valid():
                     if request.user.is_authenticated and current_user.id == review.reviewer_id:
-                        is_changed = 0
                         if review.title != request.POST.get("title"):
-                            is_changed = 1
-                            review.title = request.POST.get("title")
+                            if request.POST.get("game_api_id") != "":
+                                # also gets the new url of the game
+                                game_api_info = igdbapi_getinfo(request.POST.get("game_api_id"))
+                                review.game_url = game_api_info[0]["url"]
+                            else:
+                                review.game_url = None
+                        review.title = request.POST.get("title")
                         review.review = request.POST.get("review")
                         review.rating = request.POST.get("rating")
                         if review.rating == None:
@@ -200,16 +157,53 @@ class EditGameReviewView(View):
                         review.show_in_feed = validate_form_checkbox(review.show_in_feed)
                         review.reviewer = request.user
                         review.save()
-                        if is_changed == 1:
-                            return HttpResponseRedirect("/gamelist/definition/" + str(review.id))
-                        else:
-                            return HttpResponseRedirect("/gamelist/review/" + str(review.id))
+                        return HttpResponseRedirect("/gamelist/review/" + str(review.id))
                     else:
                         return HttpResponseRedirect('/gamelist/nt/nt')
                 else:
                     return HttpResponseRedirect("/gamelist/nt/nt")
             except GameReview.DoesNotExist:
                 return HttpResponseNotFound('<h2>Review not found</h2>')
+
+
+class AjaxSearchGameView(View):
+    def get(self, request):
+        if request.is_ajax():
+            data = request.GET.get('data', None)
+            # igdbapi_search() gets a json search_data and sorting it | more info in game_info_request.py
+            response = {'results': igdbapi_search(data)}
+            return JsonResponse(response)
+        else:
+            raise Http404
+
+
+class RemoveGameUrlView(View):
+    def get(self, request, review_id):
+        try:
+            review = GameReview.objects.get(id=review_id)
+            current_user = request.user
+            if request.user.is_authenticated and current_user.id == review.reviewer_id:
+                review.game_url = None
+                review.save()
+                return HttpResponseRedirect('/gamelist/review/' + str(review_id))
+            else:
+                return HttpResponseRedirect('/gamelist/nt/nt')
+        except GameReview.DoesNotExist:
+            return HttpResponseNotFound('<h2>Review not found</h2>')
+
+
+class DeleteGameReviewView(View):
+    def get(self, request, review_id):
+        try:
+            review = GameReview.objects.get(id=review_id)
+            current_user = request.user
+            if request.user.is_authenticated and current_user.id == review.reviewer_id:
+                review.delete()
+                return HttpResponseRedirect('/gamelist/user/' + str(current_user.username))
+            else:
+                return HttpResponseRedirect("/gamelist/nt/nt")
+        except GameReview.DoesNotExist:
+            return HttpResponseNotFound('<h2>Review not found</h2>')
 
 
 class LikeView(View):
@@ -241,4 +235,6 @@ class LikeView(View):
                 return HttpResponseRedirect("/gamelist/nt/nt")
         except GameReview.DoesNotExist:
             return HttpResponseNotFound('<h2>Review not found</h2>')
+
+
 
