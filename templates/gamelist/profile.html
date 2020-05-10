@@ -20,10 +20,19 @@
         <div class="list-title-size">
             <h1>Reviews</h1>
         </div>
+        <div class="sort-user">
+            <h2 class="padding-right15px">Sort by: </h2>
+            <div class="sorting-categories">
+              <h2 class="padding-right15px"><a onclick="sortlist('--');" class="choosed sorting-buttons" id="2">Newest</a></h2>
+              <h2 class="padding-right15px"><a onclick="sortlist('----');" class="sorting-buttons" id="4">Oldest</a></h2>
+              <h2 class="padding-right15px"><a onclick="sortlist('-');" class="sorting-buttons" id='1'>Most Liked</a></h2>
+              <h2><a onclick="sortlist('---');" class="sorting-buttons" id="3">High Rated</a></h2>
+            </div>
+          </div>
         {% if reviews.count > 0  %}
-            <div class="reviews-list list">
+            <div class="reviews-list list" id="list">
             {% for review in reviews %}
-                <div class="review" id="{{ review.id }}">
+                <div class="review" id='likes-{{ review.likenumber }}-date--{{ review.date|date:"U" }}--rating---{{ review.rating|floatformat }}---date----{{ review.date|date:"U" }}'>
                     <div class="review-title">
                         <h1><a href="/gamelist/review/{{ review.id }}">{{ review.title }}</a></h1>
                     </div>
@@ -34,7 +43,7 @@
                         </h2>
                     </div>
                     <div class="review-content" id="review">
-                        <p>{{ review.review|linebreaks }}</p>
+                        <p><a href="/gamelist/review/{{ review.id }}/">{{ review.review|linebreaks }}</a></p>
                     </div>
                     <div class="rate">
                         <h2>Do you like it?
@@ -51,7 +60,7 @@
                         </h2>
                     </div>
                     <div class="reviewer">
-                        <h2><a href="/gamelist/{{ userinfo }}">{{ review.reviewer }}</a></h2>
+                        <h2><a href="/gamelist/user/{{ userinfo }}">{{ review.reviewer }}</a></h2>
                     </div>
                 </div>
             {% endfor %}
@@ -62,7 +71,7 @@
     </div>
     <div class="likes flex-grow1">
         <div class="list-title-size">
-            <h1>Likes</h1>
+            <h1>Liked Reviews</h1>
         </div>
         {% if likes.count > 0 %}
             <div class="likes-list list">
@@ -78,7 +87,7 @@
                         </h2>
                     </div>
                     <div class="review-content" id="review">
-                        <p>{{ like.review|linebreaks }}</p>
+                        <p><a href="/gamelist/review/{{ like.id }}/">{{ like.review|linebreaks }}</a></p>
                     </div>
                     <div class="rate">
                         <h2>Do you like it?
@@ -95,7 +104,7 @@
                         </h2>
                     </div>
                     <div class="reviewer">
-                        <h2><a href="/gamelist/{{ like.reviewer }}">{{ like.reviewer }}</a></h2>
+                        <h2><a href="/gamelist/user/{{ like.reviewer }}">{{ like.reviewer }}</a></h2>
                     </div>
                 </div>
             {% endfor %}
@@ -109,6 +118,9 @@
 {% block footer %}
 <div class="footer">
     <div class="footer-links">
-      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="https://github.com/owelray/frstprjct/blob/master/gamelist/views.py#L23" target="_blank"><i class="fab fa-github"></i></a>
     </div>
+{% endblock %}
+{% block scripts %}
+  <script src="/static/js/sort.js"></script>
 {% endblock %}
