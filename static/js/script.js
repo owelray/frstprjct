@@ -1,7 +1,6 @@
 var result = 0;
 var rater = document.getElementById("rate");
 var stars = Array.from(rater.children);
-rater.addEventListener("touchmove", raterEnd);
 stars.forEach(function (item) {
   item.addEventListener("mousemove", rateStar.bind(null, item, showResult));
 });
@@ -11,18 +10,6 @@ stars.forEach(function (item) {
 
 add_form.textarea.addEventListener("input", calcChars, false);
 add_form.textarea.addEventListener("focus", calcChars, false);
-
-function raterEnd(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  var changedTouch = e.changedTouches[0];
-  var elem = document.elementFromPoint(
-    changedTouch.clientX,
-    changedTouch.clientY
-  );
-  endElem = elem;
-  rateStar(elem, showResult);
-}
 
 function rateStar(ratedItem, callback) {
   if (stars.includes(ratedItem)) {
@@ -49,7 +36,7 @@ function showResult(number) {
   document.getElementById("result").innerHTML = result + "/10";
 }
 
-var max = 450;
+var max = 1000;
 function calcChars() {
   var left = max - this.value.length;
   if (left < 0) {
@@ -59,4 +46,3 @@ function calcChars() {
   counter.style.color = left <= 10 ? "#ff3300" : "#67f4fe";
   counter.textContent = max - this.value.length;
 }
-
