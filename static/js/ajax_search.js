@@ -24,48 +24,54 @@ $(document).ready(function () {
               success: function (data) {
                 $(".loading").remove();
                 var obj = data["results"];
-                for (var counter = 0; counter != obj.length; counter++) {
-                  var result = obj[counter];
-                  var description;
-                  if (result["genres"] == undefined) {
-                    result["genres"] = "Genres is not provided";
-                  }
-                  if (result["first_release_date"] == undefined) {
-                    result["first_release_date"] =
-                      "Release date is not provided";
-                  }
-                  if (result["id"] == undefined) {
-                  } else {
-                    if (
-                      (result["summary"] == undefined) &
-                      (result["storyline"] == undefined)
-                    ) {
-                      description = "Game description is not provided";
-                    } else if (
-                      (result["storyline"] != undefined) &
-                      (result["summary"] == undefined)
-                    ) {
-                      description = result["storyline"];
-                    } else {
-                      description = result["summary"];
+                if (obj == undefined) {
+                  $(".results").append(
+                    "<div class='loading'><p>Nothing Found :(</p></div>"
+                  );
+                } else {
+                  for (var counter = 0; counter != obj.length; counter++) {
+                    var result = obj[counter];
+                    var description;
+                    if (result["genres"] == undefined) {
+                      result["genres"] = "Genres is not provided";
                     }
-                    $(".results").append(
-                      "<div class='search-result' id='" +
-                        counter +
-                        "'><div class='result-title'><h3><a class='choose-click' data-id='" +
-                        result["id"] +
-                        "'>" +
-                        result["name"] +
-                        "</a></h3></div><div class='result-releasedate'><h2>" +
-                        result["first_release_date"] +
-                        "</h2></div><div class='result-genres'><h2>" +
-                        result["genres"] +
-                        "</h2></div><div class='result-description'><p>" +
-                        description +
-                        "</p></div><div class='result-buttons'><h2><a href='" +
-                        result["url"] +
-                        "' target='_blank'>See more</a></h2></div></div>"
-                    );
+                    if (result["first_release_date"] == undefined) {
+                      result["first_release_date"] =
+                        "Release date is not provided";
+                    }
+                    if (result["id"] == undefined) {
+                    } else {
+                      if (
+                        (result["summary"] == undefined) &
+                        (result["storyline"] == undefined)
+                      ) {
+                        description = "Game description is not provided";
+                      } else if (
+                        (result["storyline"] != undefined) &
+                        (result["summary"] == undefined)
+                      ) {
+                        description = result["storyline"];
+                      } else {
+                        description = result["summary"];
+                      }
+                      $(".results").append(
+                        "<div class='search-result' id='" +
+                          counter +
+                          "'><div class='result-title'><h3><a class='choose-click' data-id='" +
+                          result["id"] +
+                          "'>" +
+                          result["name"] +
+                          "</a></h3></div><div class='result-releasedate'><h2>" +
+                          result["first_release_date"] +
+                          "</h2></div><div class='result-genres'><h2>" +
+                          result["genres"] +
+                          "</h2></div><div class='result-description'><p>" +
+                          description +
+                          "</p></div><div class='result-buttons'><h2><a href='" +
+                          result["url"] +
+                          "' target='_blank'>See more</a></h2></div></div>"
+                      );
+                    }
                   }
                 }
               },
