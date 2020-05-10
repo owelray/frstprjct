@@ -51,14 +51,14 @@
   <form method="POST" name="add_form">
     {% csrf_token %}
     <div class="inputs">
+      {{ form.game_api_id }}
       <div class="title-input">
         <label> Title of the game <br>
           {{ form.title }}
         </label>
         <div class="search" id="search">
           <div class="arrow_box">
-            <div class="results">
-            </div>
+            <div class="results"></div>
           </div>
         </div>
       </div>

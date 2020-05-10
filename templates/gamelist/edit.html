@@ -20,7 +20,7 @@
     </li>
     {% if user.is_authenticated %}
     <li class="title padding-title-hi">
-      <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
+      <h1><a href="/gamelist/user/{{ user }}">My profile</a></h1>
     </li>
     <li class="logout btn padding-logout">
       <a href="/gamelist/logout?next=/gamelist/">
@@ -51,10 +51,16 @@
   <form method="POST" name="add_form">
     {% csrf_token %}
     <div class="inputs">
+      {{ form.game_api_id }}
       <div class="title-input">
         <label> Title of the game <br>
           {{ form.title }}
         </label>
+        <div class="search" id="search">
+          <div class="arrow_box">
+            <div class="results"></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="review-input">
@@ -100,7 +106,7 @@
         </div>
     </div>
     <div class="publish-button">
-          <input type="submit" value="Publish">
+          <input type="submit" value="Save">
     </div>
   </form>
 </div>
@@ -114,19 +120,21 @@
 {% block footer %}
 <div class="footer">
   <div class="footer-links">
-      <a href="#"><i class="github"></i></a>	
+      <a href="https://github.com/owelray/frstprjct/blob/master/gamelist/views.py#L169" target="_blank"><i class="github"></i></a>
   </div>
 </div>
 {% endblock %}
 {% block scripts %}
   <script src="/static/js/script.js"></script>
+  <script src="/static/js/jquery-3.5.1.js"></script>
+  <script src="/static/js/ajax_search.js"></script>
   <script>
     var rate_value = document.getElementById('rating_hidden_value');
     var show_in_feed_value = document.getElementById("feed_hidden_value");
     show_in_feed_value = show_in_feed_value.value
     var right_star, right_show_in_feed
     if (rate_value.value % 1 == 0) {
-      right_star = document.getElementById('star' + rate_value.value) 
+      right_star = document.getElementById('star' + rate_value.value)
     } else {
       right_star = document.getElementById('star' + Math.floor(rate_value.value) + 'half')
     }
@@ -136,5 +144,5 @@
     } else {
       document.getElementById("checkbox-feed").checked = true
     }
-  </script> 
+  </script>
 {% endblock %}
