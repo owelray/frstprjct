@@ -9,12 +9,12 @@
                 {{ game.title }}
             </a>
         {% else %}
-            {{ game.title }}  
+            {{ game.title }}
         {% endif %}
         </h1>
     </div>
     <div class="decoration-underline">
-        <h4>Published in {{ game.date }} by <a href="/gamelist/{{ game.reviewer }}">{{ game.reviewer }}</a>
+        <h4>Published in {{ game.date }} by <a href="/gamelist/user/{{ game.reviewer }}">{{ game.reviewer }}</a>
         </h4>
     </div>
 </div>
@@ -24,10 +24,14 @@
 <div class="content">
     <div class="text padding-top width-85">
         <p>{{ game.review|linebreaksbr }}</p><br>
-        <h3>  
+        <h3>
             {{ game.rating|floatformat }}/10 <i class="fas fa-star yellow"></i>
             {% if user.id == game.reviewer_id %}
+            {% if game.game_url != Null %}
+            <h3 class="right_buttons">(<a href="/gamelist/remove_url/{{ game.id }}">Remove Url</a>)  (<a href="/gamelist/edit/{{ game.id }}">Edit</a>)   (<a href="/gamelist/delete/{{ game.id }}" id="delete_button">Delete</a>)</h3>
+            {% else %}
             <h3 class="right_buttons">(<a href="/gamelist/edit/{{ game.id }}">Edit</a>)   (<a href="/gamelist/delete/{{ game.id }}" id="delete_button">Delete</a>)</h3>
+            {% endif %}
             {% endif %}
         </h3>
     </div>
@@ -52,7 +56,7 @@
 {% endblock %}
 {% block footer %}
 <div class="footer">
-     <a href="#"><i class="fab fa-github"></i></a>
+     <a href="https://github.com/owelray/frstprjct/blob/master/templates/gamelist/review.html" target="_blank"><i class="fab fa-github"></i></a>
 </div>
 {% endblock %}
 {% block scripts %}
@@ -63,7 +67,7 @@
     } else {
         return false;
     }
-    }
+}
 </script>
 
 {% endblock %}
