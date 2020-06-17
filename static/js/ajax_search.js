@@ -21,6 +21,14 @@ $(document).ready(function () {
               async: true,
               url: "/gamelist/ajax/search/",
               data: { data: $(".search-input").val() },
+              statusCode: {
+                500: function () {
+                  $(".loading").remove();
+                  $(".results").append(
+                    "<div class='loading'><p>Nothing Found :(</p></div>"
+                  );
+                },
+              },
               success: function (data) {
                 $(".loading").remove();
                 var obj = data["results"];

@@ -14,7 +14,6 @@ urlpatterns = [
         path('review/<int:pk>/', views.ReviewView.as_view()),
         path('nt/nt', views.SecretView.as_view()),
         path('rate/<int:add_id>/', views.LikeView.as_view()),
-        path('id/<int:user_id>/', views.IDProfileView.as_view()),
-        path('user/<user_name>/', views.ProfileView.as_view()),
+        path('user/<slug:slug>/', views.ProfileView.as_view()),
         url(r'^ajax/search/$', views.AjaxSearchGameView.as_view()),
 ]

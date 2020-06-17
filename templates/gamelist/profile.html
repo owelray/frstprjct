@@ -32,9 +32,9 @@
         {% if reviews.count > 0  %}
             <div class="reviews-list list" id="list">
             {% for review in reviews %}
-                <div class="review" id='likes-{{ review.likenumber }}-date--{{ review.date|date:"U" }}--rating---{{ review.rating|floatformat }}---date----{{ review.date|date:"U" }}'>
+                <div class="review" id='likes-{{ review.likedone.count }}-date--{{ review.date|date:"U" }}--rating---{{ review.rating|floatformat }}---date----{{ review.date|date:"U" }}'>
                     <div class="review-title">
-                        <h1><a href="/gamelist/review/{{ review.id }}">{{ review.title }}</a></h1>
+                        <h1 class="width95"><a href="/gamelist/review/{{ review.id }}">{{ review.title }}</a></h1>
                     </div>
                     <div class="review-rating">
                         <h2>
@@ -47,8 +47,8 @@
                     </div>
                     <div class="rate">
                         <h2>Do you like it?
-                            {% if user.is_authenticated %}
-                                {% if user in review.likedone.all %}
+                            {% if request.user.is_authenticated %}
+                                {% if request.user in review.likedone.all %}
                                     <a class="liked" href="/gamelist/rate/{{ review.id }}"><i class="fas fa-thumbs-up"></i></a>
                                 {% else %}
                                     <a href="/gamelist/rate/{{ review.id }}"><i class="fas fa-thumbs-up"></i></a>
@@ -56,7 +56,7 @@
                             {% else %}
                                 <a href="/gamelist/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
                             {% endif %}
-                            {{ review.likenumber }}
+                            {{ review.likedone.count }}
                         </h2>
                     </div>
                     <div class="reviewer">
@@ -78,7 +78,7 @@
                 {% for like in likes %}
                 <div class="review" id="{{ like.id }}">
                     <div class="review-title">
-                        <h1><a href="/gamelist/review/{{ like.id }}">{{ like.title }}</a></h1>
+                        <h1 class="width95"><a href="/gamelist/review/{{ like.id }}">{{ like.title }}</a></h1>
                     </div>
                     <div class="review-rating">
                         <h2>
@@ -91,8 +91,8 @@
                     </div>
                     <div class="rate">
                         <h2>Do you like it?
-                            {% if user.is_authenticated %}
-                                {% if user in like.likedone.all %}
+                            {% if request.user.is_authenticated %}
+                                {% if request.user in like.likedone.all %}
                             <a class="liked" href="/gamelist/rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
                                 {% else %}
                             <a href="/gamelist/rate/{{ like.id }}"><i class="fas fa-thumbs-up"></i></a>
@@ -100,7 +100,7 @@
                             {% else %}
                             <a href="/gamelist/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
                             {% endif %}
-                            {{ like.likenumber }}
+                            {{ like.likedone.count }}
                         </h2>
                     </div>
                     <div class="reviewer">

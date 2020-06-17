@@ -20,25 +20,18 @@ class GameListView(ListView):
     queryset = GameReview.objects.filter(show_in_feed=True).order_by('-date')
 
 
-class ProfileView(View):
-    def get(self, request, user_name):
-        try:
-            userinfo = User.objects.get(username=user_name)
-            likes = GameReview.objects.filter(likedone=userinfo.id)
-            reviews = GameReview.objects.filter(reviewer_id=userinfo.id).order_by('-date')
-            return render(request, 'gamelist/profile.html', {'userinfo': userinfo, 'reviews': reviews, 'likes': likes})
-        except User.DoesNotExist:
-            return HttpResponseNotFound('<h2>User not found</h2>')
+class ProfileView(DetailView):
+    model = User
+    slug_field = 'username'
+    template_name = 'gamelist/profile.html'
 
-
-# For the future
-class IDProfileView(View):
-    def get(self, user_id):
-        try:
-            userinfo = User.objects.get(id=user_id)
-            return HttpResponseRedirect('/gamelist/user/' + str(userinfo.username))
-        except User.DoesNotExist:
-            return HttpResponseNotFound('<h2>User not found</h2>')
+    def get_context_data(self, **kwargs):
+        userinfo = User.objects.get(username=self.kwargs['slug'])
+        context = super().get_context_data(**kwargs)
+        context['userinfo'] = User.objects.get(username=userinfo)
+        context['likes'] = GameReview.objects.filter(likedone=userinfo.id)
+        context['reviews'] = GameReview.objects.filter(reviewer_id=userinfo.id)
+        return context
 
 
 class ReviewView(DetailView):
@@ -81,7 +74,7 @@ class SecretView(View):
 
 
 def validate_form_checkbox(checkbox):
-    if checkbox == None:
+    if checkbox is None:
         checkbox = False
     if checkbox == "on":
         checkbox = True
@@ -102,10 +95,9 @@ class AddReviewView(View):
                         game.game_url = game_api_info[0]["url"]
                     game.review = request.POST.get("review")
                     game.rating = request.POST.get("rating")
-                    if game.rating == None:
+                    if game.rating is None:
                         game.rating = 0
-                    game.show_in_feed = request.POST.get("feed")
-                    game.show_in_feed = validate_form_checkbox(game.show_in_feed)
+                    game.show_in_feed = validate_form_checkbox(request.POST.get("feed"))
                     game.reviewer = request.user
                     game.save()
                     return HttpResponseRedirect("/gamelist/review/" + str(game.id))
@@ -151,10 +143,9 @@ class EditGameReviewView(View):
                         review.title = request.POST.get("title")
                         review.review = request.POST.get("review")
                         review.rating = request.POST.get("rating")
-                        if review.rating == None:
+                        if review.rating is None:
                             review.rating = 0
-                        review.show_in_feed = request.POST.get("feed")
-                        review.show_in_feed = validate_form_checkbox(review.show_in_feed)
+                        review.show_in_feed = validate_form_checkbox(request.POST.get("feed"))
                         review.reviewer = request.user
                         review.save()
                         return HttpResponseRedirect("/gamelist/review/" + str(review.id))
@@ -216,7 +207,6 @@ class LikeView(View):
                 if current_user not in user_tags:
                     try:
                         review_item = GameReview.objects.get(id = add_id)
-                        review_item.likenumber +=1
                         review_item.likedone.add(current_user)
                         review_item.save()
                         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -225,7 +215,6 @@ class LikeView(View):
                 else:
                     try:
                         review_item = GameReview.objects.get(id=add_id)
-                        review_item.likenumber -= 1
                         review_item.likedone.remove(current_user)
                         review_item.save()
                         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

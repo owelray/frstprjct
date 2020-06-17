@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="{% static "/css/gamelist.css" %}">
 
@@ -25,9 +25,9 @@
             <p>Return to portfolio</p>
           </a>
         </li>
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <li class="title btn">
-          <h1><a href="/gamelist/{{ user }}">My profile</a></h1>
+          <h1><a href="/gamelist/user/{{ request.user }}">My profile</a></h1>
         </li>
         <li class="add-game btn">
           <a href="/gamelist/add">

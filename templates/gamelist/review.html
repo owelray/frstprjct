@@ -39,8 +39,8 @@
 <div class="rate flex-grow1 padding-top justify-center flex">
     <div class="like-btn width-85">
         <h2>Do you like it?
-            {% if user.is_authenticated %}
-                {% if user in game.likedone.all %}
+            {% if request.user.is_authenticated %}
+                {% if request.user in game.likedone.all %}
                     <a class="liked" href="/gamelist/rate/{{ game.id }}?next=/gamelist/review/{{ game.id }}/"><i class="fas fa-thumbs-up"></i></a>
                     {% else %}
                     <a href="/gamelist/rate/{{ game.id }}?next=/gamelist/review/{{ game.id }}/"><i class="fas fa-thumbs-up"></i></a>
@@ -48,7 +48,7 @@
             {% else %}
                 <a href="/gamelist/login?next={{ request.path }}"><i class="fas fa-thumbs-up"></i></a>
             {% endif %}
-            {{ game.likenumber }}
+            {{ game.likedone.count }}
         </h2>
     </div>
 </div>
